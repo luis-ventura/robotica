@@ -14,7 +14,7 @@
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Nombres:</label>
             <div class="col-sm-10">
-              <input type="name" class="form-control" id="name" name="name" placeholder="Ingrese sus nombres" value="{{ old('name') }}">
+              <input type="name" class="form-control" id="name" name="name" placeholder="Ingrese sus nombres" value="{{ $users->name }}">
             </div>
             @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -25,7 +25,7 @@
         <div class="form-group row">
           <label for="lastname" class="col-sm-2 col-form-label">Apellidos:</label>
           <div class="col-sm-10">
-            <input type="name" class="form-control" id="name" name="lastname" placeholder="Ingrese sus apellidos" value="{{ old('lastname') }}">
+            <input type="name" class="form-control" id="name" name="lastname" placeholder="Ingrese sus apellidos" value="{{ $users->lastname }}">
           </div>
           @error('lastname')
               <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
         <div class="form-group row">
           <label for="email" class="col-sm-2 col-form-label">Correo Electronico:</label>
           <div class="col-sm-10">
-            <input type="email" class="form-control" id="email" name="email" placeholder="Ingres un correo electronico" value="{{ old('email') }}">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Ingres un correo electronico" value="{{ $users->email }}">
           </div>
           @error('email')
             <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Avatar</label>
           <div class="col-sm-10">
-            <input type="file" class="form-control" name="avatar" value="{{ old('avatar') }}">
+            <input type="file" class="form-control" name="avatar" value="{{ $users->avatar }}">
           </div>
           @error('avatar')
               <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
         <div class="form-group row">
           <label for="password" class="col-sm-2 col-form-label">Contraseña:</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese una contraseña" value="{{ old('old') }}">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese una contraseña" value="{{ $users->password }}">
           </div>
           @error('password')
             <span class="invalid-feedback" role="alert">
