@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasRoles;
 
     protected $fillable = [
-        'name', 'email', 'password','lastname','avatar'
+        'name', 'lastname','email', 'control_number','career','activity','password','avatar'
     ];
 
     protected $hidden = [

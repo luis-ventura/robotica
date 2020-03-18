@@ -44,6 +44,32 @@
           @enderror
         </div>
         <div class="input-group mb-3">
+          <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus placeholder="Apellidos">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+          @error('lastname')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input id="control_number" type="text" class="form-control @error('control_number') is-invalid @enderror" name="control_number" value="{{ old('control_number') }}" required autocomplete="control_number" autofocus placeholder="Numero de Control">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-hashtag"></span>
+            </div>
+          </div>
+          @error('control_number')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div>
+        <div class="input-group mb-3">
           <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Correo Electrónico">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -76,6 +102,25 @@
               <span class="fas fa-lock"></span>
             </div>
           </div>
+        </div>
+        <div class="form-group mb-3">
+          <!--<input id="activity" type="activity" class="form-control @error('activity') is-invalid @enderror" name="activity" required autocomplete="activity" placeholder="Ingrese su Actividad">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-plus"></span>-->
+              <label>Seleccione Actividad</label>
+              <select name="activity" class="form-control">
+                <option>Residencia</option>
+                <option>Servicio Social</option>
+                <option>Cursando Semestre</option>
+              </select>
+            </div>
+          </div>
+          @error('activity')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
         </div>
         <div class="row">
           <div class="col-md-12">

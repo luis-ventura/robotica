@@ -11,7 +11,6 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <!--<img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
         <img src="{{ asset('avatar/'.Auth::user()->avatar) }}" class="img-circle" alt="No disponible">
       </div>
       <div class="info">
@@ -30,12 +29,14 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
+            @can('user_create')
             <li class="nav-item">
               <a href="{{ route('users.create') }}" class="nav-link">
                 <i class="fas fa-user-plus"></i>
                 <p>Crear Usuario</p>
               </a>
             </li>
+            @endcan
             <li class="nav-item">
               <a href="{{ route('users.index') }}" class="nav-link">
                 <i class="fas fa-users"></i> 
@@ -44,8 +45,9 @@
             </li>
           </ul>
         </li>
+        @role('administrator')
         <li class="nav-item has-treeview">
-          <a href="" class="nav-link">
+          <a href="{{ route('roles.index') }}" class="nav-link">
             <i class="nav-icon fas fa-user-lock"></i>
             <p>
               Roles <i class="right fas fa-angle-left"></i>
@@ -53,7 +55,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('roles.index') }}" class="nav-link">
                 <i class="fas fa-lock"></i>
                 <p>Roles Usuarios</p>
               </a>
@@ -65,6 +67,49 @@
               </a>
             </li>
           </ul>
+        </li>
+        @endrole
+        <li class="nav-item has-treeview">
+          <a href="" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+            Bitacoras <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="fas fa-file-signature"></i>
+                <p>Bitacora Residencia</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="fas fa-file-signature"></i>
+                <p>Bitacora Servicio Social</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="fas fa-file-signature"></i>
+                <p>Bitacora Visita-Asesoria</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="fas fa-file-signature"></i>
+                <p>Bitacora Material</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="" class="nav-link">
+            <i class="nav-icon fas fa-question"></i>
+            <p>
+            Preguntas
+            </p>
+          </a>
         </li>
       </ul>
     </nav>

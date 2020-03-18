@@ -16,7 +16,9 @@
                   <option>name</option>
                   <option>lastname</option>
                   <option>email</option>
-                  <option>created_at</option>
+                  <option>control_number</option>
+                  <option>career</option>
+                  <option>activity</option>
                   <option>updated_at</option>
                 </select>
                 <input name="buscarpor" type="text" class="form-control float-right" placeholder="Buscar...">
@@ -36,9 +38,13 @@
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>Correo</th>
-                  <th>Usuario Creado</th>
+                  <th>Numero Control</th>
+                  <th>Carrera</th>
+                  <th>Actividad</th>
                   <th>Usuario Actualizado</th>
+                  @role('administrator')
                   <th>Eliminar</th>
+                  @endrole
                 </tr>
               </thead>
               <tbody>
@@ -51,18 +57,22 @@
                   </td>
                   <td>{{ $user->lastname ? $user->lastname : 'Sin datos'}}</td>
                   <td>{{ $user->email }}</td>
-                  <td>{{ $user->created_at }}</td>
+                  <td>{{ $user->control_number ? $user->control_number : 'Sin registrar'}}</td>
+                  <td>{{ $user->career ? $user->career : 'Sin resgistrar' }}</td>
+                  <td>{{ $user->activity ? $user->activity : 'Sin actividad' }}</td>
                   <td>{{ $user->updated_at }}</td>
+                  @role('administrator')
                   <td>
                     <form method="POST" action="{{ route('users.destroy', $user->id)}}">
                         @csrf
                         {!! method_field('PUT') !!}
                         {!! method_field('DELETE') !!}
                       <button class="btn btn-danger btn-sm" type="submit">
-                        <i class="fas fa-trash"></i> Delete
+                        <i class="fas fa-user-minus"></i>
                       </button>
                     </form>
                   </td>
+                  @endrole
                 </tr>
               @endforeach
               </tbody>
@@ -78,8 +88,6 @@
         <!-- /.card -->
       </div>
     </div>
-
-    
     <!-- /.row -->
   </div>
 <!-- /.container-fluid -->
