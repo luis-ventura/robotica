@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use Notifiable;
     use HasRoles;
@@ -31,4 +31,9 @@ class User extends Authenticatable
             return $query->where($tipo,'like',"%$buscar%");
         }
     }
+    /*
+    public function role()
+    {
+        return $this->belongsTo('App\Role','id');
+    }*/
 }

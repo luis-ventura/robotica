@@ -37,6 +37,7 @@
                   <th>ID</th>
                   <th>Nombres</th>
                   <th>Apellidos</th>
+                  <th>Rol</th>
                   <th>Correo</th>
                   <th>Numero Control</th>
                   <th>Carrera</th>
@@ -56,6 +57,7 @@
                     {{ $user->name }}</a>
                   </td>
                   <td>{{ $user->lastname ? $user->lastname : 'Sin datos'}}</td>
+                  <td>{{ $user->role ? $user->role->name : 'No data' }}</td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->control_number ? $user->control_number : 'Sin registrar'}}</td>
                   <td>{{ $user->career ? $user->career : 'Sin resgistrar' }}</td>

@@ -50,20 +50,20 @@
           <a href="{{ route('roles.index') }}" class="nav-link">
             <i class="nav-icon fas fa-user-lock"></i>
             <p>
-              Roles <i class="right fas fa-angle-left"></i>
+              Roles & Permisos<i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ route('roles.index') }}" class="nav-link">
                 <i class="fas fa-lock"></i>
-                <p>Roles Usuarios</p>
+                <p>Roles</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="" class="nav-link">
                 <i class="fas fa-lock-open"></i> 
-                <p>Permisos de Usuarios</p>
+                <p>Permisos</p>
               </a>
             </li>
           </ul>

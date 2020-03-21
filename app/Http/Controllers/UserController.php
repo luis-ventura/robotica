@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -16,6 +17,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
+        $roles = Role::all();
         $buscar = $request->get('buscarpor');
         $tipo   = $request->get('tipo');
 
@@ -49,7 +51,7 @@ class UserController extends Controller
         $users->email         = $request->input('email');
         $users->password      = Hash::make($request->input('password'));
         $users->save();
-
+       
         $users->assignRole('student');
 
         return redirect()->route('users.index')->withSuccessMessage('Usuario Creado');
