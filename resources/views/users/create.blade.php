@@ -33,6 +33,17 @@
           @enderror
         </div>
         <div class="form-group row">
+          <div class="col-sm-2"> 
+            <span><b>Asignar un Rol</b></span>
+          </div>
+         @foreach ($roles as $role)
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}">
+            <label class="form-check-label">{{ $role->name, ucfirst($role->name) }}</label>          
+          </div>
+         @endforeach
+        </div>
+        <div class="form-group row">
           <label for="password" class="col-sm-2 col-form-label">Contraseña:</label>
           <div class="col-sm-10">
             <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese una contraseña" value="{{ old('old') }}">
@@ -58,4 +69,5 @@
       <!-- /.card-footer -->
     </form>
   </div>
+</div>
 @endsection

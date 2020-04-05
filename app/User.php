@@ -12,6 +12,8 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
+    protected $guard_name = 'web';
+
     protected $fillable = [
         'name', 'lastname','email', 'control_number','career','activity','password','avatar'
     ];

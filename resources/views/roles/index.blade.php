@@ -2,53 +2,56 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Roles Disponibles</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Lista de Roles y Permisos</h3>
+          <div class="card-tools">
+           <div class="btn-group">
+              <a href="{{ route('users.index') }}" class="btn btn-primary">Users</a>
+              <a href="{{ route('permissions.index') }}" class="btn btn-success">Permisos</a>
+           </div>
           </div>
-          <!-- /.card-header -->
-          <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Rol</th>
-                  <th>Ruta</th>
-                  <th>Rol Creado</th>
-                  <th>Rol Actualizado</th>
-                  <th>Eliminar</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($roles as $role)
-                <tr>
-                  <td>{{ $role->id }}</td>
-                  <td>{{ $role->name }}</td>
-                  <td>{{ $role->guard_name }}</td>
-                  <td>{{ $role->created_at }}</td>
-                  <td>{{ $role->updated_at }}</td>
-                  <td>
-                    <form method="POST" action="{{ route('roles.destroy', $role->id)}}">
-                        @csrf
-                        {!! method_field('PUT') !!}
-                        {!! method_field('DELETE') !!}
-                      <button class="btn btn-danger btn-sm" type="submit">
-                        <i class="fas fa-user-minus"></i>
-                      </button>
-                    </form>
-                  </td>
-                </tr>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>                  
+              <tr>
+                <th style="width: 10px">ID</th>
+                <th>Roles</th>
+                <th>Permisos</th>
+                <th style="width: 10%">Editar</th>
+                <th style="width: 10%">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($roles as $role)
+              <tr>
+               <td>{{ $role->id }}</td>
+               <td>{{ $role->name }}</td>
+               <td>{{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}</td>
+               <td>
+                <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+               </td>
+               <td>
+                <form method="POST" action="{{ route('roles.destroy', $role->id)}}">
+                  @csrf
+                  @method('DELETE')
+                <button class="btn btn-danger btn-sm" type="submit">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+                </form>
+              </td>
+              </tr>
               @endforeach
-              </tbody>
-            </table>
+            </tbody>
+          </table>
         </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
       </div>
+      <a href="{{ route('roles.create') }}" class="btn btn-success">Agregar Role</a>
     </div>
-    <!-- /.row -->
   </div>
+</div>
 @endsection

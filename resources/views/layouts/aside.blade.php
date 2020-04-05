@@ -61,7 +61,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{ route('permissions.index') }}" class="nav-link">
                 <i class="fas fa-lock-open"></i> 
                 <p>Permisos</p>
               </a>

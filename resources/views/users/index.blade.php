@@ -57,7 +57,7 @@
                     {{ $user->name }}</a>
                   </td>
                   <td>{{ $user->lastname ? $user->lastname : 'Sin datos'}}</td>
-                  <td>{{ $user->role ? $user->role->name : 'No data' }}</td>
+                  <td>{{ $user->roles()->pluck('name')->implode('') }}</td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->control_number ? $user->control_number : 'Sin registrar'}}</td>
                   <td>{{ $user->career ? $user->career : 'Sin resgistrar' }}</td>
