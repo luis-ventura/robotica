@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Agregar un Rol</h3>
+      <h3 class="card-title">Editar un Rol</h3>
     </div>
     <form class="form-horizontal" method="POST" action="{{ route('roles.update', $roles->id)}}">
     @csrf
@@ -25,10 +25,15 @@
               <span><b>Asignar Permisos</b></span>
             </div>
            @foreach ($permissions as $permission)
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="permissions[]" value="{{ $permission->id, $roles->permissions }}">
+             <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="permissions[]" 
+              @foreach ($roles->permissions as $p)
+                  @if($permission->id == $p->id)
+                      checked
+                  @endif
+              @endforeach value="{{ $permission->id.$roles->permissions }}">
               <label class="form-check-label">{{ $permission->name, ucfirst($permission->name) }}</label>          
-            </div>
+             </div>
            @endforeach
         </div>
       </div>
@@ -39,6 +44,5 @@
       </div>
       <!-- /.card-footer -->
     </form>
-  </div>
 </div>
 @endsection

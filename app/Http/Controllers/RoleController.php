@@ -18,13 +18,13 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         if (session('success_message')){
-            Alert::success('Success!',session('success_message'));
+            Alert::success('Creado Correctamente',session('success_message'));
         }
         elseif(session('error_message')){
-            Alert::error('Alert!',session('success_message'));
+            Alert::error('Eliminado Correctamente',session('error_message'));
         }
         elseif(session('update_message')){
-            Alert::success('Success Update!',session('sucess_message'));
+            Alert::success('Actualizado Correctamente',session('udpate_message'));
         }
         return view('roles.index',compact('roles'));
     }
@@ -79,33 +79,28 @@ class RoleController extends Controller
 
     public function update(Request $request, $id)
     {
-         $roles = Role::findOrFail($id);
-         //Get role with the given id
-         //Validate name and permission fields
-            $this->validate($request, [
+        $roles = Role::findOrFail($id);
+
+        $this->validate($request, [
                 'name'=>'required|max:10|unique:roles,name,'.$id,
                 'permissions' =>'required',
-            ]);
-    
-            $input = $request->except(['permissions']);
-            $permissions = $request['permissions'];
-            $roles->fill($input)->save();
-    
-            $p_all = Permission::all();//Get all permissions
-    
-            foreach ($p_all as $p) {
-                $roles->revokePermissionTo($p); //Remove all permissions associated with role
-            }
-    
-            foreach ($permissions as $permission) {
-                $p = Permission::where('id', '=', $permission)->first(); //Get corresponding form //permission in db
-                $roles->givePermissionTo($p);  //Assign permission to role
-            }
-    
-            return redirect()->route('roles.index')
-                ->with('flash_message',
-                 'Role'. $roles->name.' updated!');
+        ]);
         
+        $input = $request->except(['permissions']);
+        $permissions = $request['permissions'];
+        $roles->fill($input)->save();
+        $p_all = Permission::all();//Get all permissions
+        
+        foreach ($p_all as $p) {
+            $roles->revokePermissionTo($p); //Remove all permissions associated with role
+        }
+        foreach ($permissions as $permission) {
+            $p = Permission::where('id', '=', $permission)->first(); //Get corresponding form //permission in db
+            $roles->givePermissionTo($p);  //Assign permission to role
+        }
+
+        return redirect()->route('roles.index')->withUpdateMessage('Actualizado'.$roles->name);
+   
     }
 
     public function destroy($id)
