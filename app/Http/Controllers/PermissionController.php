@@ -21,15 +21,15 @@ class PermissionController extends Controller
 
         if (session('success_message')) 
         {
-            Alert::success('Success!',session('success_message'));
+            Alert::success('Permiso Creado',session('success_message'));
         }
         elseif(session('error_message'))
         {
-            Alert::error('Alert!',session('error_message'));
+            Alert::error('Permiso Eliminado',session('error_message'));
         }
         elseif(session('update_message'))
         {
-            Alert::success('Success Update!',session('update_message'));
+            Alert::success('Permiso Actualizado',session('update_message'));
         }
 
         return view('permissions.index', compact('permissions'));
@@ -64,7 +64,7 @@ class PermissionController extends Controller
             }
         }
 
-        return redirect()->route('permissions.index')->withSuccessMessage('Permiso Creado'.$permission->name.'added!');
+        return redirect()->route('permissions.index')->withSuccessMessage('Permiso Creado '.$permission->name);
     }
 
     public function show($id)
@@ -88,7 +88,7 @@ class PermissionController extends Controller
         $input = $request->all();
         $permission->fill($input)->save();
 
-        return redirect()->route('permissions.index')->withUpdateMessage('Permiso Actualizado'.$permission->name.'Update');
+        return redirect()->route('permissions.index')->withUpdateMessage('Permiso Actualizado '.$permission->name);
     }
 
     public function destroy($id)
@@ -103,6 +103,6 @@ class PermissionController extends Controller
 
         $permission->delete();
 
-        return redirect()->route('permissions.index')->withErrorMessage('Permiso Eliminado');
+        return redirect()->route('permissions.index')->withErrorMessage('Permiso Borrado');
     }
 }

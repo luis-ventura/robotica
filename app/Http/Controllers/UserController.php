@@ -23,18 +23,18 @@ class UserController extends Controller
         $tipo   = $request->get('tipo');
 
         $users = User::buscarpor($tipo,$buscar)->paginate(8);
-    
-        if (session('success_message')) 
+
+        if (session('success_message'))
         {
-            Alert::success('Success!',session('success_message'));
+            Alert::success('Usuario Creado',session('success_message'));
         }
         elseif(session('error_message'))
         {
-            Alert::error('Alert!',session('error_message'));
+            Alert::error('Usuario Eliminado',session('error_message'));
         }
         elseif(session('update_message'))
         {
-            Alert::success('Success Update!',session('update_message'));
+            Alert::success('Datos del Usuarios Actualizados',session('update_message'));
         }
 
         return view('users.index',compact('users'));
@@ -60,19 +60,12 @@ class UserController extends Controller
 
         if(isset($roles))
         {
-            foreach ($roles as $role) 
+            foreach ($roles as $role)
             {
                 $role_r = Role::where('id', '=', $role)->firstOrFail();
                 $users->assingRole($role_r);
             }
         }
-        /*$users = new User();
-        $users->name          = $request->input('name');
-        $users->email         = $request->input('email');
-        $users->password      = Hash::make($request->input('password'));
-        $users->save();
-       
-        $users->assignRole('student');*/
 
         return redirect()->route('users.index')->withSuccessMessage('Usuario Creado');
     }
@@ -92,8 +85,18 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate([
+            'name'           => 'required|max:80',
+            'lastname'       => 'required|max:80',
+            'email'          => 'required|email|unique:users',
+            'control_number' => 'required|control_number|unique:users',
+            'career'         => 'required|career|unique:users',
+            'activity'       => 'required|activity|unique:users',
+            'avatar'         => 'required|avatar|mimes:jpg,png|max:255'
+        ]);
+
         $users = User::findOrFail($id);
-        
+
         if($request->hasFile('avatar'))
         {
             $file = $request->file('avatar');
@@ -101,14 +104,16 @@ class UserController extends Controller
             $file->move(public_path('avatar/'), $name);
         }
 
-        $users->name          = $request->input('name');
-        $users->email         = $request->input('email');
-        $users->password      = Hash::make($request->input('password'));
-        $users->lastname      = $request->input('lastname');
-        $users->avatar        = $name;
+        $users->name           = $request->input('name');
+        $users->lastname       = $request->input('lastname');
+        $users->email          = $request->input('email');
+        $users->control_number = $request->input('control_number');
+        $users->career         = $request->input('career');
+        $users->activity       = $request->input('activity');
+        $users->avatar         = $name;
         $users->save();
-            
-        return redirect()->route('users.index')->withUpdateMessage('Usuario Actualizado');
+
+        return redirect()->route('users.show',$users->id)->withUpdateMessage('Usuario Actualizado');
     }
 
     public function destroy($id)

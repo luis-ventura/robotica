@@ -21,7 +21,8 @@
                 <tr>
                   <th style="width: 10px">ID</th>
                   <th>Nombre Permiso</th>
-                  <th>Operación</th>
+                  <th style="width: 10px">Editar</th>
+                  <th style="width: 10px">Eliminar</th>
                 </tr>
               </thead>
               <tbody>
@@ -29,9 +30,11 @@
                 <tr>
                  <td>{{ $permission->id }}</td>
                  <td>
-                   <a href="{{ route('permissions.edit', $permission->id) }}">
                    {{ $permission->name }}</a>
                   </td>
+                 <td>
+                  <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i>
+                 </td>
                  <td>
                     <form method="POST" action="{{ route('permissions.destroy', $permission->id)}}">
                         @csrf

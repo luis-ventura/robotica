@@ -20,10 +20,10 @@
             <thead>                  
               <tr>
                 <th style="width: 10px">ID</th>
-                <th>Roles</th>
+                <th style="width: 25px">Roles</th>
                 <th>Permisos</th>
-                <th style="width: 10%">Editar</th>
-                <th style="width: 10%">Eliminar</th>
+                <th style="width: 05%">Editar</th>
+                <th style="width: 05%">Eliminar</th>
               </tr>
             </thead>
             <tbody>

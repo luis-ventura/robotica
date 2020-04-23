@@ -45,6 +45,54 @@
           @enderror
         </div>
         <div class="form-group row">
+          <label for="control_number" class="col-sm-2 col-form-label">Número Control:</label>
+          <div class="col-sm-10">
+            <input type="control_number" class="form-control" id="control_number" name="control_number" placeholder="Ingres un numero de control" value="{{ $users->control_number }}">
+          </div>
+          @error('control_number')
+            <span class="invalid-feedback" role="alert">
+               <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div>
+        <div class="form-group row">
+          <label for="career" class="col-sm-2 col-form-label">Carrera</label>
+          <div class="col-sm-10">
+            <select name="career" class="form-control">
+              <option>Ingenieria en sistemas computacionales</option>
+              <option>Ingenieria en TIC'S</option>
+              <option>Ingenieria Informatica</option>
+              <option>Ingenieria Ambiental</option>
+              <option>Ingenieria Bioquimica</option>
+              <option>Ingenieria Quimica</option>
+              <option>Ingenieria Industrial</option>
+            </select>
+          </div>
+          @error('career')
+            <span class="invalid-feedback" role="alert">
+               <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div>
+        <div class="form-group row">
+          <label for="activity" class="col-sm-2 col-form-label">Actividad:</label>
+          <div class="col-sm-10">
+            <select name="activity" class="form-control">
+              @role('administrator')
+              <option>Maestro</option>
+              @endrole
+              <option>Residencia</option>
+              <option>Servicio Social</option>
+              <option>Cursando Semestre</option>
+            </select>
+          </div>
+          @error('activity')
+            <span class="invalid-feedback" role="alert">
+               <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div>
+        <div class="form-group row">
           <label class="col-sm-2 col-form-label">Avatar</label>
           <div class="col-sm-10">
             <input type="file" class="form-control" name="avatar" value="{{ $users->avatar }}">
@@ -54,24 +102,7 @@
                   <strong>{{ $message }}</strong>
               </span>
           @enderror
-      </div>
-        <div class="form-group row">
-          <label for="password" class="col-sm-2 col-form-label">Contraseña:</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese una contraseña" value="{{ $users->password }}">
-          </div>
-          @error('password')
-            <span class="invalid-feedback" role="alert">
-               <strong>{{ $message }}</strong>
-            </span>
-          @enderror
-        </div>
-        <div class="form-group row">
-            <label for="password" class="col-sm-2 col-form-label">Repite Contraseña</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="password-confirm" name="password-confirm"  required autocomplete="new-password" placeholder="Confirme contraseña">
-            </div>
-        </div>
+       </div>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

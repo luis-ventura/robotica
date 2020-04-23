@@ -18,13 +18,13 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         if (session('success_message')){
-            Alert::success('Creado Correctamente',session('success_message'));
+            Alert::success('Se Agrego Nuevo Rol',session('success_message'));
         }
         elseif(session('error_message')){
-            Alert::error('Eliminado Correctamente',session('error_message'));
+            Alert::error('Rol Eliminado',session('error_message'));
         }
         elseif(session('update_message')){
-            Alert::success('Actualizado Correctamente',session('udpate_message'));
+            Alert::success('Permisos Actualizados',session('udpate_message'));
         }
         return view('roles.index',compact('roles'));
     }
@@ -60,7 +60,7 @@ class RoleController extends Controller
             $role->givePermissionTo($p);
         }
 
-        return redirect()->route('roles.index')->withSuccessMessage('Nuevo Rol Añadido'.$role->name);
+        return redirect()->route('roles.index')->withSuccessMessage('Se creo el rol '.$role->name);
        
     }
 
@@ -99,13 +99,13 @@ class RoleController extends Controller
             $roles->givePermissionTo($p);  //Assign permission to role
         }
 
-        return redirect()->route('roles.index')->withUpdateMessage('Actualizado'.$roles->name);
+        return redirect()->route('roles.index')->withUpdateMessage('Actualizado '.$roles->name);
    
     }
 
     public function destroy($id)
     {
         $roles = Role::findOrFail($id)->delete();
-        return redirect()->route('roles.index')->withErrorMessage('Rol Eliminado');
+        return redirect()->route('roles.index')->withErrorMessage('Rol Borrado');
     }
 }

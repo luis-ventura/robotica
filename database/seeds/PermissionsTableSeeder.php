@@ -7,9 +7,9 @@ class PermissionsTableSeeder extends Seeder
 {
     public function run()
     {
-        Permission::create(['name' => 'user_create']);
-        Permission::create(['name' => 'user_edit']);
-        Permission::create(['name' => 'user_show']);
-        Permission::create(['name' => 'user_delete']);
+        Permission::create(['name' => 'crear usuarios']);
+        Permission::create(['name' => 'editar usuarios']);
+        Permission::create(['name' => 'ver ususarios']);
+        Permission::create(['name' => 'eliminar usuarios']);
     }
 }

@@ -5,7 +5,6 @@
     <div class="card-header">
       <h3 class="card-title">Ingresar un nuevo usuario</h3>
     </div>
-    <!-- /.card-header -->
     <!-- form start -->
     <form class="form-horizontal" method="POST" action="{{ route('users.store')}}">
     @csrf
@@ -13,7 +12,7 @@
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
-              <input type="name" class="form-control" id="name" name="name" placeholder="Ingrese sus nombres" value="{{ old('name') }}">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese sus nombres" value="{{ old('name') }}">
             </div>
             @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -33,13 +32,13 @@
           @enderror
         </div>
         <div class="form-group row">
-          <div class="col-sm-2"> 
+          <div class="col-sm-2">
             <span><b>Asignar un Rol</b></span>
           </div>
          @foreach ($roles as $role)
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}">
-            <label class="form-check-label">{{ $role->name, ucfirst($role->name) }}</label>          
+            <label class="form-check-label">{{ $role->name, ucfirst($role->name) }}</label>
           </div>
          @endforeach
         </div>
@@ -68,6 +67,5 @@
       </div>
       <!-- /.card-footer -->
     </form>
-  </div>
 </div>
 @endsection
