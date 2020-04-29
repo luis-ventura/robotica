@@ -104,23 +104,12 @@
           </div>
         </div>
         <div class="form-group mb-3">
-          <!--<input id="activity" type="activity" class="form-control @error('activity') is-invalid @enderror" name="activity" required autocomplete="activity" placeholder="Ingrese su Actividad">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-plus"></span>-->
-              <label>Seleccione Actividad</label>
-              <select name="activity" class="form-control">
-                <option>Residencia</option>
-                <option>Servicio Social</option>
-                <option>Cursando Semestre</option>
-              </select>
-            </div>
-          </div>
-          @error('activity')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-          @enderror
+           <label>Seleccione Actividad</label>
+           <select name="activity" class="form-control">
+            <option>Residencia</option>
+            <option>Servicio Social</option>
+            <option>Cursando Semestre</option>
+           </select>
         </div>
         <div class="row">
           <div class="col-md-12">
