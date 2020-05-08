@@ -47,11 +47,16 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        /*$this->validate($request, [
+        $this->validate($request, [
             'name'     => 'required|max:80',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed'
-        ]);*/
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+            'roles' => 'required|array',
+        ]);
+
+        $request->request->add([
+            'password' => bcrypt($request->password)
+        ]);
 
         /*$validatedData = $request->validate([
             'name'     => ['required', 'string','max:80'],
@@ -59,18 +64,22 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);*/
 
-        $users = User::create($request->only('name','email','password'));
+        $user = User::create($request->all());
 
-        $roles = $request['roles'];
+        $roles = Role::find($request->roles);
 
-        if(isset($roles))
-        {
-            foreach ($roles as $role)
-            {
-                $rol = Role::where('id', '=', $role)->firstOrFail();
-                $users->assignRole($rol);
-            }
-        }
+        $roles->each(function($role) use($user) {
+            $user->assignRole($role);
+        });
+
+        // if(isset($roles))
+        // {
+        //     foreach ($roles as $role)
+        //     {
+        //         $rol = Role::where('id', '=', $role)->firstOrFail();
+        //         $users->assignRole($rol);
+        //     }
+        // }
 
         return redirect()->route('users.index')->withSuccessMessage('Usuario Creado');
     }

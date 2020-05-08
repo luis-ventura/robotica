@@ -10,3 +10,7 @@ Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 
 Route::resource('permissions', 'PermissionController');
+
+Route::resource('bitacoras', 'BitacorasController');
+
+Route::resource('materials', 'MaterialesController');

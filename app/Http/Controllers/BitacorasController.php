@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Bitacoras;
 use Illuminate\Http\Request;
 
-class Mastercontroller extends Controller
+class BitacorasController extends Controller
 {
     public function index()
     {
-        //
+        $bitacoras = Bitacoras::all();
+        return view('bitacoras.index',compact('bitacoras'));
     }
 
     public function create()

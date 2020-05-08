@@ -72,7 +72,7 @@
         </li>
         @endrole
         <li class="nav-item has-treeview">
-          <a href="" class="nav-link">
+          <a href="{{ route('bitacoras.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
             Bitacoras <i class="right fas fa-angle-left"></i>
@@ -80,12 +80,12 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{ route('bitacoras.index') }}" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Residencia</p>
               </a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a href="" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Servicio Social</p>
@@ -96,9 +96,9 @@
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Visita-Asesoria</p>
               </a>
-            </li>
+            </li>-->
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{ route('materials.index') }}" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Material</p>
               </a>
