@@ -12,8 +12,6 @@ class CreateBitacorasTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->string('adviser');
-            $table->dateTime('entry_time');
-            $table->dateTime('departure_time');
             $table->timestamps();
         });
     }

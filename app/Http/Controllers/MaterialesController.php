@@ -21,30 +21,20 @@ class MaterialesController extends Controller
 
     public function create()
     {
-        $users= User::all();
+        $users = User::get();
         return view('materials.create',compact('users'));
     }
 
     public function store(Request $request)
     {
-        $materials = Material::all();
-
-        $materials->date_material  = $request->input('date_material');
-        $materials->material       = $request->input('material');
-        $materials->entry_time     = $request->input('entry_time');
-        $materials->departure_time = $request->input('departure_time');
-        $materials->observation    = $request->input('observation');
-
-        $users = $request['users'];
-
-        $materials->save();
-
+        $materials = Material::create($request->all());
         return redirect()->route('materials.index')->with('Registro Añadido');
     }
 
     public function show($id)
     {
-        //
+        $materials = Material::findOrFail($id);
+        return view('materials.show', compact('materials'));
     }
 
     public function edit($id)

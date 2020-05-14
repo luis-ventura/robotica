@@ -24,22 +24,24 @@
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Material</th>
-                  <th>Hora Entrada</th>
-                  <th>Hora Salida</th>
+                  <th>Creado</th>
+                  <th>Actualizado</th>
                   <th>Observación</th>
                 </tr>
               </thead>
               <tbody>
+                  @foreach ($materials as $material)
                 <tr>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
+                 <td>{{ $material->id }}</td>
+                 <td>{{ $material->date_material }}</td>
+                 <td>{{ $material->user->control_number }}</td>
+                 <td>{{ $material->user->name }}</td>
+                 <td>{{ $material->user->lastname }}</td>
+                 <td>{{ $material->material }}</td>
+                 <td>{{ $material->created_at }}</td>
+                 <td>{{ $material->updated_at }}</td>
+                 <td>{{ $material->observation }}</td>
+                 @endforeach
                 </tr>
               </tbody>
             </table>

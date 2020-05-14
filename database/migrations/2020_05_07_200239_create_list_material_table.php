@@ -12,9 +12,9 @@ class CreateListMaterialTable extends Migration
             $table->bigIncrements('id');
             $table->date('date_material');
             $table->string('material',120);
-            $table->dateTime('entry_time');
-            $table->dateTime('departure_time');
             $table->text('observation');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

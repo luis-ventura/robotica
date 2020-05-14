@@ -9,6 +9,11 @@ class Material extends Model
     protected $table    = 'list_material';
 
     protected $fillable = [
-        'date_material','material','entry_time','departure_time','observation'
+        'date_material','material','observation', 'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

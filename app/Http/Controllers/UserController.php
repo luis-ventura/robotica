@@ -99,7 +99,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate([
+        /*$this->validate([
             'name'           => 'required|max:80',
             'lastname'       => 'required|max:80',
             'email'          => 'required|email|unique:users',
@@ -107,7 +107,7 @@ class UserController extends Controller
             'career'         => 'required|career|unique:users',
             'activity'       => 'required|activity|unique:users',
             'avatar'         => 'required|avatar|mimes:jpg,png|max:255'
-        ]);
+        ]);*/
 
         $users = User::findOrFail($id);
 

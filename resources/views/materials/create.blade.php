@@ -3,17 +3,19 @@
 @section('content')
 <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Agregar un Permiso</h3>
+      <h3 class="card-title">Agregar resgitro de material</h3>
     </div>
     <form class="form-horizontal" method="POST" action="{{ route('materials.store')}}">
     @csrf
+    <input name="user_id" value="{{auth()->user()->id}}">
+
       <div class="card-body">
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control" id="date_material" name="date_material" placeholder="Añada nombre del Permiso" value="{{ old('date_material') }}">
+              <input type="date" class="form-control @error('date_material') is-invalid @enderror" id="date_material" name="date_material" placeholder="Añada nombre del Permiso" value="{{ old('date_material') }}">
             </div>
-            @error('date')
+            @error('date_material')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -22,30 +24,40 @@
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Matricula:</label>
             <div class="col-sm-10">
-              <select class="form-control">
-                @foreach ($users as $user)
-                 <option>Seleccione Matricula</option>
-                 <option>{{ $user->control_number }}</option>
-                @endforeach
+              <select name="users[]" class="form-control">
+                  <option>Busque el numero de control</option>
+                  @foreach($users as $user)
+                  <option value="{{ $user->id }}">{{ $user->control_number, ucfirst($user->control_number) }}</option>
+                  @endforeach
               </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="name" name="name" placeholder="Añada nombre del Permiso" value="">
+              <select name="users[]" class="form-control">
+                  <option>Busque un nombre</option>
+                  @foreach($users as $user)
+                  <option value="{{ $user->id }}">{{ $user->name, ucfirst($user->name) }}</option>
+                  @endforeach
+              </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Apellido:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="name" name="name" placeholder="Añada nombre del Permiso" value="">
+                <select name="users[]" class="form-control">
+                    <option>Busque un apellido</option>
+                    @foreach($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->lastname, ucfirst($user->lastname) }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="material" class="col-sm-2 col-form-label">Material:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="material" name="material" placeholder="Ingrese material pedido" value="{{ old('material') }}">
+              <input type="text" class="form-control @error('material') is-invalid @enderror" id="material" name="material" placeholder="Ingrese material pedido" value="{{ old('material') }}">
             </div>
             @error('material')
                 <span class="invalid-feedback" role="alert">
@@ -54,31 +66,9 @@
             @enderror
         </div>
         <div class="form-group row">
-            <label for="fecha" class="col-sm-2 col-form-label">Hora Entrada:</label>
-            <div class="col-sm-10">
-              <input type="datetime" class="form-control" id="entry_time" name="entry_time" placeholder="Hora de Entrada" value="{{ old('entry_time') }}">
-            </div>
-            @error('entry_time')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-        <div class="form-group row">
-            <label for="fecha" class="col-sm-2 col-form-label">Hora Salida:</label>
-            <div class="col-sm-10">
-              <input type="datetime" class="form-control" id="departure_time" name="departure_time" placeholder="Hora de Salida" value="{{ old('departure_time') }}">
-            </div>
-            @error('departure_time')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-        <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Observación:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="observation" name="observation" placeholder="Observación" value="{{ old('observation') }}">
+              <input type="text" class="form-control @error('observation') is-invalid @enderror" id="observation" name="observation" placeholder="Observación" value="{{ old('observation') }}">
             </div>
             @error('observation')
                 <span class="invalid-feedback" role="alert">
@@ -95,5 +85,4 @@
       <!-- /.card-footer -->
     </form>
   </div>
-</div>
 @endsection
