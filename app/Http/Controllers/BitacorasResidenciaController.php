@@ -41,14 +41,14 @@ class BitacorasResidenciaController extends Controller
     {
         $bitacorasresidencia = BitacorasR::findOrFail($id);
         $users     = User::all();
-        return view('materials.edit', compact('bitacorasresidencia', 'users'));
+        return view('bitacorasresidencia.edit', compact('bitacorasresidencia', 'users'));
     }
 
     public function update(Request $request, $id)
     {
         $bitacorasresidencia = BitacorasR::findOrFail($id);
 
-        $bitacorasresidencia->date = $request->input('date_material');
+        $bitacorasresidencia->date = $request->input('date');
         $bitacorasresidencia->save();
 
         return redirect()->route('bitacorasresidencia.index')->with('Resgistro Actualizado');

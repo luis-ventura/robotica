@@ -13,4 +13,8 @@ Route::resource('permissions', 'PermissionController');
 
 Route::resource('bitacorasresidencia', 'BitacorasResidenciaController');
 
+Route::resource('bitacoraservicio', 'BitacoraServicioController');
+
 Route::resource('materials', 'MaterialesController');
+
+Route::get('material-list-pdf', 'MaterialesController@exportPdf')->name('materiales.pdf');

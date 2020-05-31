@@ -85,13 +85,13 @@
                 <p>Bitacora Residencia</p>
               </a>
             </li>
-            <!--<li class="nav-item">
-              <a href="" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route('bitacoraservicio.index') }}" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Servicio Social</p>
               </a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a href="" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Visita-Asesoria</p>

@@ -5,12 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Material;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class MaterialesController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function exportPdf()
+    {
+        $materials = Material::get();
+
+        $pdf = PDF::loadView('pdf.materials', compact('materials'));
+
+        return $pdf->setPaper('a4')->stream('lista-materiales.pdf');
     }
 
     public function index()
