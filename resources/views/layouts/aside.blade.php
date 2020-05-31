@@ -72,7 +72,7 @@
         </li>
         @endrole
         <li class="nav-item has-treeview">
-          <a href="{{ route('bitacoras.index') }}" class="nav-link">
+          <a href="{{ route('bitacorasresidencia.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
             Bitacoras <i class="right fas fa-angle-left"></i>
@@ -80,7 +80,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('bitacoras.index') }}" class="nav-link">
+              <a href="{{ route('bitacorasresidencia.index') }}" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Residencia</p>
               </a>

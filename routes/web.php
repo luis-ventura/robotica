@@ -11,6 +11,6 @@ Route::resource('roles', 'RoleController');
 
 Route::resource('permissions', 'PermissionController');
 
-Route::resource('bitacoras', 'BitacorasController');
+Route::resource('bitacorasresidencia', 'BitacorasResidenciaController');
 
 Route::resource('materials', 'MaterialesController');

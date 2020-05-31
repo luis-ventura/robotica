@@ -39,16 +39,26 @@ class MaterialesController extends Controller
 
     public function edit($id)
     {
-        //
+        $materials = Material::findOrFail($id);
+        $users     = User::all();
+        return view('materials.edit', compact('materials', 'users'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $materials = Material::findOrFail($id);
+
+        $materials->date_material = $request->input('date_material');
+        $materials->material      = $request->input('material');
+        $materials->observation   = $request->input('observation');
+        $materials->save();
+
+        return redirect()->route('materials.index')->with('Resgistro Actualizado');
     }
 
     public function destroy($id)
     {
-        //
+        $materials = Material::findOrFail($id)->delete();
+        return redirect()->route('materials.index')->with('Material Borrado');
     }
 }
