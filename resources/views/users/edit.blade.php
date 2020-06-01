@@ -81,6 +81,9 @@
               @role('administrator')
               <option>Maestro</option>
               @endrole
+              @role('coordinator')
+              <option>Coordinador</option>
+              @endrole
               <option>Residencia</option>
               <option>Servicio Social</option>
               <option>Cursando Semestre</option>

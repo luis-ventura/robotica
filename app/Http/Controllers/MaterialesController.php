@@ -20,7 +20,7 @@ class MaterialesController extends Controller
 
         $pdf = PDF::loadView('pdf.materials', compact('materials'));
 
-        return $pdf->setPaper('a4')->stream('lista-materiales.pdf');
+        return $pdf->setPaper('a4','landscape')->stream('lista-materiales.pdf');
     }
 
     public function index()

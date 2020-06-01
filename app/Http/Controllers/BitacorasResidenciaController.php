@@ -5,12 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\BitacorasR;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BitacorasResidenciaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function exportPdf()
+    {
+        $bitacorasresidencia = BitacorasR::get();
+
+        $pdf = PDF::loadView('pdf.bitacorasresidencia', compact('bitacorasresidencia'));
+
+        return $pdf->setPaper('a4','landscape')->stream('bitacorasresidencia-list-pdf');
     }
 
     public function index()

@@ -9,6 +9,9 @@
             <h3 class="card-title">Bitacora de Servicio Social</h3>
             <div class="card-tools">
              <div class="btn-group">
+                <a href="{{ route('servicio.pdf') }}" class="btn btn-primary float-right" style="margin-right: 5px;">
+                    <i class="fas fa-download"></i> Generar PDF
+                </a>
                 <a href="{{ route('bitacoraservicio.create') }}" class="btn btn-success">Añadir Registro</a>
              </div>
             </div>

@@ -18,3 +18,7 @@ Route::resource('bitacoraservicio', 'BitacoraServicioController');
 Route::resource('materials', 'MaterialesController');
 
 Route::get('material-list-pdf', 'MaterialesController@exportPdf')->name('materiales.pdf');
+
+Route::get('bitacorasresidencia-list-pdf','BitacorasResidenciaController@exportPdf')->name('residencia.pdf');
+
+Route::get('bitacoraservicio-list-pdf','BitacoraServicioController@exportPdf')->name('servicio.pdf');

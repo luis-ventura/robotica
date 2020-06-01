@@ -5,12 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\BitacorasSe;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BitacoraServicioController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function exportPdf()
+    {
+        $bitacoraservicio = BitacorasSe::get();
+
+        $pdf = PDF::loadView('pdf.bitacoraservicio', compact('bitacoraservicio'));
+
+        return $pdf->setPaper('a4','landscape')->stream('bitacoraservicio-list-pdf');
     }
 
     public function index()
