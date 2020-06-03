@@ -21,7 +21,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        @hasrole('administrator|coordinator')
+        @can('user_index')
         <li class="nav-item has-treeview">
           <a href="{{ route('users.index') }}" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
@@ -45,7 +45,7 @@
               </a>
             </li>
           </ul>
-          @endhasrole
+          @endcan
         </li>
         @role('administrator')
         <li class="nav-item has-treeview">
@@ -91,12 +91,12 @@
                 <p>Bitacora Servicio Social</p>
               </a>
             </li>
-            <!--<li class="nav-item">
+            <li class="nav-item">
               <a href="" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Visita-Asesoria</p>
               </a>
-            </li>-->
+            </li>
             <li class="nav-item">
               <a href="{{ route('materials.index') }}" class="nav-link">
                 <i class="fas fa-file-signature"></i>

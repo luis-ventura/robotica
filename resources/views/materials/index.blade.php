@@ -9,9 +9,11 @@
             <h3 class="card-title">Bitacora de Materiales</h3>
             <div class="card-tools">
              <div class="btn-group">
-                <a href="{{ route('materiales.pdf') }}" class="btn btn-primary float-right" style="margin-right: 5px;">
+                 @can('generar_pdf')
+                 <a href="{{ route('materiales.pdf') }}" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generar PDF
-                </a>
+                 </a>
+                 @endcan
                 <a href="{{ route('materials.create') }}" class="btn btn-success">Añadir Registro</a>
              </div>
             </div>
@@ -31,7 +33,9 @@
                   <th style="width: 10%">Actualizado</th>
                   <th style="width: 8%">Observación</th>
                   <th style="width: 5%">Editar</th>
+                  @can('materiales_delete')
                   <th style="width: 5%">Borrar</th>
+                  @endcan
                 </tr>
               </thead>
               <tbody>
@@ -49,6 +53,7 @@
                  <td>
                     <a href="{{ route('materials.edit',$material->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                  </td>
+                 @can('materiales_delete')
                  <td>
                    <form method="POST" action="{{ route('materials.destroy', $material->id)}}">
                     @csrf
@@ -58,6 +63,7 @@
                     </button>
                    </form>
                  </td>
+                 @endcan
                  @endforeach
                 </tr>
               </tbody>

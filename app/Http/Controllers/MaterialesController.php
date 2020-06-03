@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Material;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;

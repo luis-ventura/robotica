@@ -9,9 +9,11 @@
             <h3 class="card-title">Bitacora de Residencia</h3>
             <div class="card-tools">
              <div class="btn-group">
+                @can('generar_pdf')
                 <a href="{{ route('residencia.pdf') }}" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generar PDF
                 </a>
+                @endcan
                 <a href="{{ route('bitacorasresidencia.create') }}" class="btn btn-success">Añadir Registro</a>
              </div>
             </div>
@@ -26,10 +28,8 @@
                   <th style="width: 8%">Matricula</th>
                   <th style="width: 10%">Nombre</th>
                   <th style="width: 10%">Apellido</th>
-                  <th style="width: 10%">Firma</th>
                   <th style="width: 10%">Creado</th>
                   <th style="width: 10%">Actualizado</th>
-                  <th style="width: 10%">F.Encargado</th>
                   <th style="width: 5%">Editar</th>
                   <th style="width: 5%">Borrar</th>
                 </tr>
@@ -42,10 +42,8 @@
                       <td>{{ $residencia->user->control_number }}</td>
                       <td>{{ $residencia->user->name }}</td>
                       <td>{{ $residencia->user->lastname }}</td>
-                      <td></td>
                       <td>{{ $residencia->created_at }}</td>
                       <td>{{ $residencia->updated_at }}</td>
-                      <td></td>
                       <td>
                         <a href="{{ route('bitacorasresidencia.edit',$residencia->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                       </td>

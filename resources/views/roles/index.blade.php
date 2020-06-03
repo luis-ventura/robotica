@@ -17,7 +17,7 @@
         <!-- /.card-header -->
         <div class="card-body">
           <table class="table table-bordered">
-            <thead>                  
+            <thead>
               <tr>
                 <th style="width: 10px">ID</th>
                 <th style="width: 25px">Roles</th>
@@ -31,7 +31,7 @@
               <tr>
                <td>{{ $role->id }}</td>
                <td>{{ $role->name }}</td>
-               <td>{{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}</td>
+               <td>{{ str_replace(array('[' ,']' ,'"'),' ', $role->permissions()->pluck('name')) }}</td>
                <td>
                 <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                </td>
