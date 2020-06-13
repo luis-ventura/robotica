@@ -17,7 +17,7 @@
           <!-- /.card-header -->
           <div class="card-body">
             <table class="table table-bordered">
-              <thead>                  
+              <thead>
                 <tr>
                   <th style="width: 10px">ID</th>
                   <th>Nombre Permiso</th>
@@ -29,17 +29,15 @@
                 @foreach ($permissions as $permission)
                 <tr>
                  <td>{{ $permission->id }}</td>
-                 <td>
-                   {{ $permission->name }}</a>
-                  </td>
+                 <td>{{ $permission->name }}</td>
                  <td>
                   <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i>
                  </td>
                  <td>
                     <form method="POST" action="{{ route('permissions.destroy', $permission->id)}}">
                         @csrf
-                        {!! method_field('PUT') !!}
-                        {!! method_field('DELETE') !!}
+                        @method('PUT')
+                        @method('DELETE')
                       <button class="btn btn-danger btn-sm" type="submit">
                         <i class="fas fa-trash-alt"></i>
                       </button>

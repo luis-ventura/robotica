@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
-      <div class="row">
+<div class="container-fluid">
+    <div class="row">
         <div class="col-md-3">
           <!-- Profile Image -->
           <div class="card card-primary card-outline">
@@ -50,7 +50,6 @@
           </div>
           <!-- /.card -->
         </div>
-        <!-- /.col -->
         <div class="col-md-9">
             <div class="card-body">
               <div class="tab-content">
@@ -95,8 +94,5 @@
           </div>
           <!-- /.nav-tabs-custom -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
+</div>
 @endsection

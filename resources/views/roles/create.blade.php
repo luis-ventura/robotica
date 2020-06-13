@@ -26,7 +26,7 @@
            @foreach ($permissions as $permission)
             <div class="form-check">
               <input class="form-check-input" type="checkbox" name="permissions[]" value="{{ $permission->id }}">
-              <label class="form-check-label">{{ $permission->name, ucfirst($permission->name) }}</label>          
+              <label class="form-check-label">{{ $permission->name, ucfirst($permission->name) }}</label>
             </div>
            @endforeach
         </div>
@@ -38,6 +38,5 @@
       </div>
       <!-- /.card-footer -->
     </form>
-  </div>
 </div>
 @endsection

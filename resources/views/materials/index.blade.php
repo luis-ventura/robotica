@@ -33,7 +33,7 @@
                   <th style="width: 10%">Actualizado</th>
                   <th style="width: 8%">Observación</th>
                   <th style="width: 5%">Editar</th>
-                  @can('materiales_delete')
+                  @can('eliminar_materiales')
                   <th style="width: 5%">Borrar</th>
                   @endcan
                 </tr>
@@ -53,7 +53,7 @@
                  <td>
                     <a href="{{ route('materials.edit',$material->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                  </td>
-                 @can('materiales_delete')
+                 @can('eliminar_materiales')
                  <td>
                    <form method="POST" action="{{ route('materials.destroy', $material->id)}}">
                     @csrf

@@ -7,7 +7,7 @@
     </div>
     <form class="form-horizontal" method="POST" action="{{ route('permissions.update', $permissions->id)}}">
     @csrf
-    {!! method_field('PUT') !!}
+    @method('PUT')
       <div class="card-body">
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
@@ -28,6 +28,5 @@
       </div>
       <!-- /.card-footer -->
     </form>
-  </div>
 </div>
 @endsection

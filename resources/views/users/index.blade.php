@@ -43,7 +43,7 @@
                   <th>Carrera</th>
                   <th>Actividad</th>
                   <th>Usuario Actualizado</th>
-                  @role('administrator')
+                  @role('administrador')
                   <th>Eliminar</th>
                   @endrole
                 </tr>
@@ -52,10 +52,7 @@
                 @foreach ($users as $user)
                 <tr>
                   <td>{{ $user->id }}</td>
-                  <td>
-                    <a href="{{ route('users.show', $user->id) }}">
-                    {{ $user->name }}</a>
-                  </td>
+                  <td>{{ $user->name }}</td>
                   <td>{{ $user->lastname ? $user->lastname : 'Sin datos'}}</td>
                   <td>{{ $user->roles()->pluck('name')->implode(',') }}</td>
                   <td>{{ $user->email }}</td>
@@ -63,7 +60,7 @@
                   <td>{{ $user->career ? $user->career : 'Sin registrar' }}</td>
                   <td>{{ $user->activity ? $user->activity : 'Sin actividad' }}</td>
                   <td>{{ $user->updated_at }}</td>
-                  @role('administrator')
+                  @role('administrador')
                   <td>
                     <form method="POST" action="{{ route('users.destroy', $user->id)}}">
                         @csrf

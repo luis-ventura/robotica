@@ -9,7 +9,7 @@
     <!-- form start -->
     <form class="form-horizontal" method="POST" action="{{ route('users.update',$users->id)}}" enctype="multipart/form-data">
     @csrf
-    {!! method_field('PUT') !!}
+    @method('PUT')
       <div class="card-body">
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Nombres:</label>
@@ -78,10 +78,10 @@
           <label for="activity" class="col-sm-2 col-form-label">Actividad:</label>
           <div class="col-sm-10">
             <select name="activity" class="form-control">
-              @role('administrator')
+              @role('administrador')
               <option>Maestro</option>
               @endrole
-              @role('coordinator')
+              @role('cordinador')
               <option>Coordinador</option>
               @endrole
               <option>Residencia</option>

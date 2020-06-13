@@ -9,9 +9,11 @@
             <h3 class="card-title">Bitacora de Servicio Social</h3>
             <div class="card-tools">
              <div class="btn-group">
+                @can('generar_pdf')
                 <a href="{{ route('servicio.pdf') }}" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generar PDF
                 </a>
+                @endcan
                 <a href="{{ route('bitacoraservicio.create') }}" class="btn btn-success">Añadir Registro</a>
              </div>
             </div>
@@ -27,7 +29,6 @@
                   <th style="width: 10%">Nombre</th>
                   <th style="width: 10%">Apellido</th>
                   <th style="width: 10%">Asesor</th>
-                  <th style="width: 10%">Firma</th>
                   <th style="width: 10%">Creado</th>
                   <th style="width: 10%">Actualizado</th>
                   <th style="width: 5%">Editar</th>
@@ -43,7 +44,6 @@
                       <td>{{ $servicio->user->name }}</td>
                       <td>{{ $servicio->user->lastname }}</td>
                       <td>{{ $servicio->adviser }}</td>
-                      <td></td>
                       <td>{{ $servicio->created_at }}</td>
                       <td>{{ $servicio->updated_at }}</td>
                       <td>

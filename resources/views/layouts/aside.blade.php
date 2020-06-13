@@ -21,7 +21,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        @can('user_index')
+        @can('usuario_index')
         <li class="nav-item has-treeview">
           <a href="{{ route('users.index') }}" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
@@ -30,7 +30,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            @can('user_create')
+            @can('crear_usuario')
             <li class="nav-item">
               <a href="{{ route('users.create') }}" class="nav-link">
                 <i class="fas fa-user-plus"></i>
@@ -47,7 +47,7 @@
           </ul>
           @endcan
         </li>
-        @role('administrator')
+        @role('administrador')
         <li class="nav-item has-treeview">
           <a href="{{ route('roles.index') }}" class="nav-link">
             <i class="nav-icon fas fa-user-lock"></i>

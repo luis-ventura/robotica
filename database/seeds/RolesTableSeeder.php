@@ -8,19 +8,20 @@ class RolesTableSeeder extends Seeder
 {
     public function run()
     {
-        $role = Role::create(['name' => 'administrator']);
+        $role = Role::create(['name' => 'administrador']);
         //$role->givePermissionTo('user_create','user_edit', 'user_show', 'user_delete');
         $role->givePermissionTo(Permission::all());
 
-        $role = Role::create(['name' => 'coordinator']);
-        $role->givePermissionTo('user_create','user_show','user_edit','user_index',
-        'residencia_create','residencia_edit','residencia_show','residencia_delete',
-        'servicio_create','servicio_edit','servicio_show','servicio_delete',
-        'materiales_create','materiales_edit','materiales_show','materiales_delete',
-        'visitante_create','visitante_edit','visitante_show','visitante_delete','generar_pdf');
+        $role = Role::create(['name' => 'cordinador']);
+        $role->givePermissionTo('crear_usuario','mostrar_usuario','editar_usuario','usuario_index',
+        'crear_residencia','editar_residencia','mostrar_residencia','eliminar_residencia','residencia_index',
+        'crear_servicio','editar_servicio','mostrar_servicio','eliminar_servicio','servicio_index',
+        'crear_materiales','editar_materiales','mostrar_materiales','eliminar_materiales','materiales_index',
+        'crear_visitante','editar_visitante','mostrar_visitante','eliminar_visitante','visitante_index',
+        'generar_pdf');
         //$role->givePermissionTo(Permission::all());
 
-        $role = Role::create(['name' => 'student']);
-        $role->givePermissionTo('user_show','user_edit');
+        $role = Role::create(['name' => 'estudiante']);
+        $role->givePermissionTo('mostrar_usuario','editar_usuario');
     }
 }

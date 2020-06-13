@@ -12,8 +12,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
-        ])->assignRole('administrator');
-        
+        ])->assignRole('administrador');
+
         // Asignación del rol
         //$user->assignRole('administrator');
 
@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'name'     => 'cordinador',
             'email'    => 'cordinador@gmail.com',
             'password' => bcrypt('12345678'),
-        ])->assignRole('coordinator');
+        ])->assignRole('cordinador');
 
         //$user->assingRole('coordinator');*/
     }

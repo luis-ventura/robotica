@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Agregar resgitro de material</h3>
+      <h3 class="card-title">Editar registro Servicio Social</h3>
     </div>
     <form class="form-horizontal" method="POST" action="{{ route('bitacoraservicio.update', $bitacoraservicio->id)}}">
     @csrf

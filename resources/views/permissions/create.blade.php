@@ -21,13 +21,13 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-2">
-        @if(!$roles->isEmpty())  
+        @if(!$roles->isEmpty())
               <span><b>Asignar Permisos y Roles</b></span>
             </div>
            @foreach ($roles as $role)
             <div class="form-check">
               <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}">
-              <label class="form-check-label">{{ $role->name, ucfirst($role->name) }}</label>          
+              <label class="form-check-label">{{ $role->name, ucfirst($role->name) }}</label>
             </div>
            @endforeach
         @endif
@@ -40,6 +40,5 @@
       </div>
       <!-- /.card-footer -->
     </form>
-  </div>
 </div>
 @endsection
