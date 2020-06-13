@@ -11,11 +11,11 @@ class VisitController extends Controller
 {
     public function exportPdf()
     {
-        $bitacoraservicio = BitacorasSe::get();
+        $visits = Visit::get();
 
-        $pdf = PDF::loadView('pdf.bitacoraservicio', compact('bitacoraservicio'));
+        $pdf = PDF::loadView('pdf.visita', compact('visits'));
 
-        return $pdf->setPaper('a4','landscape')->stream('bitacoraservicio-list-pdf');
+        return $pdf->setPaper('a4','landscape')->stream('visita-list-pdf');
     }
 
     public function index()

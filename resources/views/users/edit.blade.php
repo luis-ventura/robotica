@@ -110,7 +110,7 @@
       <!-- /.card-body -->
       <div class="card-footer">
         <button type="submit" class="btn btn-success">Guardar</button>
-        <a class="btn btn-warning" href="{{ route('users.index') }}">Cancelar</a>
+        <a class="btn btn-warning" href="{{ route('users.show',$users->id) }}">Cancelar</a>
       </div>
       <!-- /.card-footer -->
     </form>
