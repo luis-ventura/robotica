@@ -92,7 +92,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{ route('visits.index') }}" class="nav-link">
                 <i class="fas fa-file-signature"></i>
                 <p>Bitacora Visita-Asesoria</p>
               </a>

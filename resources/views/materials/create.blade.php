@@ -24,31 +24,19 @@
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Matricula:</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" name="users[]" placeholder="Matricula"
-            @foreach ($users as $user)
-                {{ $user->id }}
-                value="{{ $user->control_number }}"
-            @endforeach >
+                <input type="text" class="form-control" name="users[]" placeholder="Matricula" value="{{ Auth::user()->control_number }}">
             </div>
         </div>
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" name="users[]" placeholder="Nombre"
-            @foreach ($users as $user)
-                {{ $user->id }}
-                value="{{ $user->name }}"
-            @endforeach >
+                <input type="text" class="form-control" name="users[]" placeholder="Matricula" value="{{ Auth::user()->name }}">
             </div>
         </div>
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Apellido:</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" name="users[]" placeholder="Apellido"
-            @foreach ($users as $user)
-                {{ $user->id }}
-                value="{{ $user->lastname }}"
-            @endforeach >
+                <input type="text" class="form-control" name="users[]" placeholder="Matricula" value="{{ Auth::user()->lastname }}">
             </div>
         </div>
         <div class="form-group row">
