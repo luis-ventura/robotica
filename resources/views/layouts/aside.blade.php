@@ -14,7 +14,7 @@
         <img src="{{ asset('avatar/'.Auth::user()->avatar) }}" class="img-circle" alt="No disponible">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{ Auth::user()->email }}</a>
+        <a href="{{ route('users.show',Auth::user()->id) }}" class="d-block">{{ Auth::user()->email }}</a>
       </div>
     </div>
 

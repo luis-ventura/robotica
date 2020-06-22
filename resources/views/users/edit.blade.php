@@ -59,13 +59,17 @@
           <label for="career" class="col-sm-2 col-form-label">Carrera</label>
           <div class="col-sm-10">
             <select name="career" class="form-control">
-              <option>Ingenieria en sistemas computacionales</option>
-              <option>Ingenieria en TIC'S</option>
-              <option>Ingenieria Informatica</option>
-              <option>Ingenieria Ambiental</option>
               <option>Ingenieria Bioquimica</option>
               <option>Ingenieria Quimica</option>
+              <option>Ingenieria Ambiental</option>
+              <option>Ingenieria en Sistemas computacionales</option>
+              <option>Ingenieria en TIC'S</option>
+              <option>Ingenieria Informatica</option>
+              <option>Ingenieria en Gestión Empresarial</option>
+              <option>Ingenieria Civil</option>
               <option>Ingenieria Industrial</option>
+              <option>Ingenieria Petrolera</option>
+              <option>Licenciatura en Administración</option>
             </select>
           </div>
           @error('career')

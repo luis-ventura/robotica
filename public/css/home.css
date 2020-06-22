@@ -1,0 +1,15 @@
+#robot{
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 0px -100px -80px 0px;
+}
+
+.hometext{
+    text-align:right;
+}
+
+.textprofile{
+    text-align: justify;
+    font-size: 20px;
+}
