@@ -26,11 +26,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->lastName}";
+    }
+
     public function scopeBuscarpor($query, $tipo, $buscar)
     {
         if(($tipo) && ($buscar))
         {
             return $query->where($tipo,'like',"%$buscar%");
         }
+    }
+
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class);
     }
 }

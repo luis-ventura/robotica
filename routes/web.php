@@ -26,3 +26,5 @@ Route::get('bitacorasresidencia-list-pdf','BitacorasResidenciaController@exportP
 Route::get('bitacoraservicio-list-pdf','BitacoraServicioController@exportPdf')->name('servicio.pdf');
 
 Route::get('visita-list-pdf', 'VisitController@exportPdf')->name('visita.pdf');
+
+Route::resource('uploadpdf', 'UploadPDFController');
