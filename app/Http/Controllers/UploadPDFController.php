@@ -44,7 +44,7 @@ class UploadPDFController extends Controller
         return Storage::disk('public')->response($uploadpdf->upload);
     }
 
-    public function edit($id)
+   /* public function edit($id)
     {
         //
     }
@@ -52,10 +52,22 @@ class UploadPDFController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+    }*/
 
     public function destroy($id)
     {
-        //
+        $upload = Upload::findOrFail($id);
+
+        $oldImage = public_path() . '/storage/'. $upload->upload;
+
+        if(file_exists($oldImage)){
+            //delete the image
+            unlink($oldImage);
+        }
+
+        $upload->delete();
+
+        //Upload::findOrFail($id)->delete();
+        return redirect()->route('uploadpdf.index')->with('Eliminado');
     }
 }
