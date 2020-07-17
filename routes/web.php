@@ -1,4 +1,5 @@
 <?php
+
 Auth::routes();
 
 Route::get('/', function () { return view('welcome'); });
@@ -28,3 +29,10 @@ Route::get('bitacoraservicio-list-pdf','BitacoraServicioController@exportPdf')->
 Route::get('visita-list-pdf', 'VisitController@exportPdf')->name('visita.pdf');
 
 Route::resource('uploadpdf', 'UploadPDFController');
+
+Route::resource('posts', 'PostsController');
+
+//Route::resource('posts', 'PostsCommentsController');
+
+Route::post('posts/{posts}/comments','PostsCommentsController@create')->name('create_comment');
+
