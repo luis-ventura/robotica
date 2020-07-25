@@ -24,18 +24,6 @@ class UserController extends Controller
 
         $users = User::buscarpor($tipo,$buscar)->paginate(8);
 
-        if (session('success_message'))
-        {
-            Alert::success('Usuario Creado',session('success_message'));
-        }
-        elseif(session('error_message'))
-        {
-            Alert::error('Usuario Eliminado',session('error_message'));
-        }
-        elseif(session('update_message'))
-        {
-            Alert::success('Datos del Usuarios Actualizados',session('update_message'));
-        }
         return view('users.index',compact('users'));
     }
 
@@ -81,7 +69,7 @@ class UserController extends Controller
         //     }
         // }
 
-        return redirect()->route('users.index')->withSuccessMessage('Usuario Creado');
+        return redirect()->route('users.index')->withSuccess('Usuario Creado');
     }
 
     public function show($id)
@@ -127,12 +115,12 @@ class UserController extends Controller
         $users->avatar         = $name;
         $users->save();
 
-        return redirect()->route('users.show',$users->id)->withUpdateMessage('Usuario Actualizado');
+        return redirect()->route('users.show',$users->id)->withInfo('Usuario Actualizado');
     }
 
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
-        return redirect()->route('users.index')->withErrorMessage('Usuario Eliminado');
+        return redirect()->route('users.index')->withError('Usuario Eliminado');
     }
 }
