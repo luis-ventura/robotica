@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Permission;
 use App\Material;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MaterialesController extends Controller
 {
@@ -40,7 +41,7 @@ class MaterialesController extends Controller
     public function store(Request $request)
     {
         $materials = Material::create($request->all());
-        return redirect()->route('materials.index')->with('Registro Añadido');
+        return redirect()->route('materials.index')->withToastSuccess('Registro Añadido');
     }
 
     public function show($id)
@@ -65,12 +66,12 @@ class MaterialesController extends Controller
         $materials->observation   = $request->input('observation');
         $materials->save();
 
-        return redirect()->route('materials.index')->with('Resgistro Actualizado');
+        return redirect()->route('materials.index')->withToastInfo('Resgistro Actualizado');
     }
 
     public function destroy($id)
     {
         $materials = Material::findOrFail($id)->delete();
-        return redirect()->route('materials.index')->with('Material Borrado');
+        return redirect()->route('materials.index')->withToastError('Material Borrado');
     }
 }

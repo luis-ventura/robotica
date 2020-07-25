@@ -67,7 +67,6 @@ class UploadPDFController extends Controller
 
         $upload->delete();
 
-        //Upload::findOrFail($id)->delete();
         return redirect()->route('uploadpdf.index')->with('Eliminado');
     }
 }

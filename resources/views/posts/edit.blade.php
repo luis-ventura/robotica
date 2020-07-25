@@ -1,27 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
-@if(count($errors) > 0)
-   <div class="alert alert-danger">
-       <ul>
-           @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-           @endforeach
-       </ul>
-   </div>
-@endif
-
 <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Agregar Pregunta</h3>
+      <h3 class="card-title">Editar Datos</h3>
     </div>
     <form class="form-horizontal" method="POST" action="{{ route('posts.update',$posts->id)}}">
     @csrf
     @method('PUT')
       <div class="card-body">
         <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Titulo:</label>
+            <label for="name" class="col-sm-2 col-form-label">Tema:</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="title" placeholder="Titulo" value="{{ $posts->title }}">
             </div>
@@ -32,22 +21,11 @@
             @enderror
         </div>
         <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Descripción:</label>
+            <label for="name" class="col-sm-2 col-form-label">Pregunta:</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="description" placeholder="descripcion" value="{{ $posts->description }}">
             </div>
             @error('description')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-        <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Descripción:</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="url" placeholder="url" value="{{ $posts->url }}">
-            </div>
-            @error('url')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

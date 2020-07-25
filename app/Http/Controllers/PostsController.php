@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class PostsController extends Controller
 {
     public function __construct()
@@ -14,8 +14,9 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts= Post::with('user')->orderBy('id','desc')->paginate(5);
+        $posts= Post::with('user')->orderBy('id','desc')->paginate(10);
         return view('posts.index',['posts' => $posts]);
+        //return view('posts.index',compact('posts'));
     }
 
     public function create()
@@ -28,15 +29,14 @@ class PostsController extends Controller
         $this->validate($request,[
             'title'       => 'required',
             'description' => 'required',
-            'url'         => 'required'
         ]);
 
         $posts = new Post;
-        $posts->fill($request->only('title','description','url'));
+        $posts->fill($request->only('title','description'));
         $posts->user_id = auth()->user()->id;
         $posts->save();
 
-        return redirect()->route('posts.index')->with('Creado');
+        return redirect()->route('posts.index')->withToastSuccess('Creado');
     }
 
     public function show($id)
@@ -61,7 +61,6 @@ class PostsController extends Controller
         $this->validate($request,[
             'title'       => 'required',
             'description' => 'required',
-            'url'         => 'required'
         ]);
 
         $posts = Post::findOrFail($id);
@@ -70,9 +69,9 @@ class PostsController extends Controller
             return redirect()->route('posts.index');
         }
 
-        $posts->update($request->only('title','description','url'));
+        $posts->update($request->only('title','description'));
 
-        return redirect()->route('posts.show',$posts->id);
+        return redirect()->route('posts.show',$posts->id)->withToastInfo('Actualizado');
     }
 
     public function destroy($id)
@@ -84,6 +83,6 @@ class PostsController extends Controller
         }
 
         $posts->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->withToastError('Eliminado');
     }
 }

@@ -8,7 +8,6 @@
             <div class="card-body">
             <h3>Titulo:     {{ $posts->title }}<h3>
             <p>Descripción: {{ $posts->description }}</p>
-            <p>Fuente:      {{ $posts->url }}</p>
             <p>Creado:      {{ $posts->created_at->diffForHumans() }}</p>
 
             <div class="row">

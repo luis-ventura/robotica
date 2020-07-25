@@ -12,7 +12,7 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->string('url');
+            //$table->string('url');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

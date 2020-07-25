@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Visit;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VisitController extends Controller
 {
@@ -33,7 +34,7 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         $visits = Visit::create($request->all());
-        return redirect()->route('visits.index')->with('Registro Añadido');
+        return redirect()->route('visits.index')->withToastSuccess('Registro Añadido');
     }
 
     public function show($id)
@@ -56,12 +57,12 @@ class VisitController extends Controller
         $visits->date = $request->input('date');
         $visits->save();
 
-        return redirect()->route('visits.index')->with('Resgistro Actualizado');
+        return redirect()->route('visits.index')->withToastInfo('Resgistro Actualizado');
     }
 
     public function destroy($id)
     {
         $visits = Visit::findOrFail($id)->delete();
-        return redirect()->route('visits.index')->with('Registro Borrado');
+        return redirect()->route('visits.index')->withToastError('Registro Borrado');
     }
 }

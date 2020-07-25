@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\BitacorasSe;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BitacoraServicioController extends Controller
 {
@@ -38,7 +39,7 @@ class BitacoraServicioController extends Controller
     public function store(Request $request)
     {
         $bitacoraservicio = BitacorasSe::create($request->all());
-        return redirect()->route('bitacoraservicio.index')->with('Registro Añadido');
+        return redirect()->route('bitacoraservicio.index')->withToastSuccess('Registro Añadido');
     }
 
     public function show($id)
@@ -61,12 +62,12 @@ class BitacoraServicioController extends Controller
         $bitacoraservicio->date = $request->input('date');
         $bitacoraservicio->save();
 
-        return redirect()->route('bitacoraservicio.index')->with('Resgistro Actualizado');
+        return redirect()->route('bitacoraservicio.index')->withToastInfo('Resgistro Actualizado');
     }
 
     public function destroy($id)
     {
         $bitacoraservicio = BitacorasSe::findOrFail($id)->delete();
-        return redirect()->route('bitacoraservicio.index')->with('Registro Borrado');
+        return redirect()->route('bitacoraservicio.index')->withToastError('Registro Borrado');
     }
 }

@@ -18,20 +18,6 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-
-        if (session('success_message')) 
-        {
-            Alert::success('Permiso Creado',session('success_message'));
-        }
-        elseif(session('error_message'))
-        {
-            Alert::error('Permiso Eliminado',session('error_message'));
-        }
-        elseif(session('update_message'))
-        {
-            Alert::success('Permiso Actualizado',session('update_message'));
-        }
-
         return view('permissions.index', compact('permissions'));
     }
 
@@ -64,7 +50,7 @@ class PermissionController extends Controller
             }
         }
 
-        return redirect()->route('permissions.index')->withSuccessMessage('Permiso Creado '.$permission->name);
+        return redirect()->route('permissions.index')->withToastSuccess('Permiso Creado '.$permission->name);
     }
 
     public function show($id)
@@ -88,7 +74,7 @@ class PermissionController extends Controller
         $input = $request->all();
         $permission->fill($input)->save();
 
-        return redirect()->route('permissions.index')->withUpdateMessage('Permiso Actualizado '.$permission->name);
+        return redirect()->route('permissions.index')->withToastInfo('Permiso Actualizado '.$permission->name);
     }
 
     public function destroy($id)
@@ -98,11 +84,11 @@ class PermissionController extends Controller
         //Make it impossible to delete this specific permission    
         if ($permission->name == "user_delete") 
         {
-            return redirect()->route('permissions.index')->withErrorMessage('No puedes eliminar este permiso');
+            return redirect()->route('permissions.index')->withToastError('No puedes eliminar este permiso');
         }
 
         $permission->delete();
 
-        return redirect()->route('permissions.index')->withErrorMessage('Permiso Borrado');
+        return redirect()->route('permissions.index')->withToastError('Permiso Borrado');
     }
 }

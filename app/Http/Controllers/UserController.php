@@ -46,12 +46,6 @@ class UserController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        /*$validatedData = $request->validate([
-            'name'     => ['required', 'string','max:80'],
-            'email'    => ['required', 'string', 'email', 'max:100', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);*/
-
         $user = User::create($request->all());
 
         $roles = Role::find($request->roles);
@@ -60,16 +54,7 @@ class UserController extends Controller
             $user->assignRole($role);
         });
 
-        // if(isset($roles))
-        // {
-        //     foreach ($roles as $role)
-        //     {
-        //         $rol = Role::where('id', '=', $role)->firstOrFail();
-        //         $users->assignRole($rol);
-        //     }
-        // }
-
-        return redirect()->route('users.index')->withSuccess('Usuario Creado');
+        return redirect()->route('users.index')->withToastSuccess('Usuario Creado');
     }
 
     public function show($id)
@@ -115,12 +100,12 @@ class UserController extends Controller
         $users->avatar         = $name;
         $users->save();
 
-        return redirect()->route('users.show',$users->id)->withInfo('Usuario Actualizado');
+        return redirect()->route('users.show',$users->id)->withToastInfo('Usuario Actualizado');
     }
 
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
-        return redirect()->route('users.index')->withError('Usuario Eliminado');
+        return redirect()->route('users.index')->withToastError('Usuario Eliminado');
     }
 }

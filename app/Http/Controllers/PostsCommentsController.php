@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostsCommentsController extends Controller
 {
@@ -25,7 +26,7 @@ class PostsCommentsController extends Controller
         $comment->user_id = \Auth::user()->id;
         $comment->save();
 
-        return redirect()->route('posts.show',['post' => $postId]);
+        return redirect()->route('posts.show',['post' => $postId])->withToastSuccess('Comentario Exitoso');
     }
 
 
