@@ -16,7 +16,6 @@ class PostsController extends Controller
     {
         $posts= Post::with('user')->orderBy('id','desc')->paginate(10);
         return view('posts.index',['posts' => $posts]);
-        //return view('posts.index',compact('posts'));
     }
 
     public function create()
