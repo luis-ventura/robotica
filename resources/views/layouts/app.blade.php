@@ -6,14 +6,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Panel Administrativo</title>
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <script src="https://kit.fontawesome.com/66ad15c511.js" crossorigin="anonymous"></script>
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}} ">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/66ad15c511.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body class="hold-transition sidebar-mini">

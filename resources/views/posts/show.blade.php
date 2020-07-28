@@ -9,7 +9,7 @@
             <!-- Post -->
             <div class="post">
               <div class="user-block">
-                <img class="img-circle img-bordered-sm" src="{{ asset('avatar/'.$posts->user['avatar']) }}" alt="user image">
+                <img class="img-circle img-bordered-sm" src="{{ asset('storage/avatar/'.$posts->user['avatar']) }}" alt="user image">
                 <span class="username">
                   <a href="#">{{ $posts->user['name'] }}</a>
                 </span>
@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="user-block">
-                                <img class="img-circle img-bordered-sm" src="{{ asset('avatar/'.$comment->user['avatar']) }}" alt="user image">
+                                <img class="img-circle img-bordered-sm" src="{{ asset('storage/avatar/'.$comment->user['avatar']) }}" alt="user image">
                                 <span class="username">
                                     <a href="#">{{ $comment->user['name'] }}</a>
                                 </span>

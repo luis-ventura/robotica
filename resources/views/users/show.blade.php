@@ -11,7 +11,7 @@
                 <!-- Post -->
                 <div class="post">
                   <h5 style="text-align: center;"><b>Datos del Perfil</b></h5><hr>
-                  <img class="img-bordered img-fluid" src="{{ asset('avatar/'.Auth::user()->avatar) }}" alt="user image" style=" float: right; ">
+                  <img class="img-bordered img-fluid" src="{{ asset('storage/avatar/'.Auth::user()->avatar) }}" alt="user image" style=" float: right; ">
                   <p class="textprofile"><b> Nombres:</b> {{ Auth::user()->name }}</p>
                   <p class="textprofile"><b> Apellidos:</b> {{ Auth::user()->lastname }} </p>
                   <p class="textprofile"><b>Correo Registrado:</b> {{ Auth::user()->email }}</p>

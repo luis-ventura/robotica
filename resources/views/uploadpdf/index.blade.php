@@ -26,8 +26,8 @@
             <tbody>
               @foreach ($pdfs as $pdf)
               <tr>
-               <td>{{ $pdf->user->full_name }}</td>
-               <td><a href="{{route('uploadpdf.show', $pdf)}}">{{asset($pdf->upload)}}</a></td>
+               <td><i class="fa fa-user"></i> {{ $pdf->user->full_name }} {{ $pdf->user->lastname }}</td>
+               <td><i class="fas fa-file-pdf"></i> <a href="{{route('uploadpdf.show', $pdf)}}" target="_blank">{{asset($pdf->upload)}}</a></td>
                <td>
                   <form method="POST" action="{{ route('uploadpdf.destroy', $pdf->id)}}">
                     @csrf

@@ -70,9 +70,9 @@ class UserController extends Controller
         return view('users.edit', compact('users','roles'));
     }
 
-    public function update(Request $request, $id)
+    /*public function update(Request $request, $id)
     {
-        /*$this->validate([
+        /*$this->validate($request,[
             'name'           => 'required|max:80',
             'lastname'       => 'required|max:80',
             'email'          => 'required|email|unique:users',
@@ -80,7 +80,7 @@ class UserController extends Controller
             'career'         => 'required|career|unique:users',
             'activity'       => 'required|activity|unique:users',
             'avatar'         => 'required|avatar|mimes:jpg,png|max:255'
-        ]);*/
+        ]);
 
         $users = User::findOrFail($id);
 
@@ -101,6 +101,64 @@ class UserController extends Controller
         $users->save();
 
         return redirect()->route('users.show',$users->id)->withToastInfo('Usuario Actualizado');
+    }*/
+
+    public function update(Request $request, $id)
+    {
+        $this->validate(request(),
+            ['name'           => ['required','max:50']],
+            ['lastname'       => ['required','max:50']],
+            ['email'          => ['required', 'email', 'max:255', 'unique:users,email,'.$id]],
+            ['career'         => ['required']],
+            ['control_number' => ['required']],
+            ['activity'       => ['required']],
+            ['avatar'         => ['required','image']
+            ]);
+
+        $users = User::findOrFail($id);
+
+        $users->name = $request->get('name');
+        $users->lastname       = $request->get('lastname');
+        $users->email          = $request->get('email');
+        $users->control_number = $request->get('control_number');
+        $users->career         = $request->get('career');
+        $users->activity       = $request->get('activity');
+
+        $file = $request->get('avatar');
+
+        if($file != null or $request->hasFile('avatar'))
+        {
+            $fileNameWithTheExtension = request('avatar')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithTheExtension, PATHINFO_FILENAME);
+            $extension = request('avatar')->getClientOriginalExtension();
+            $newFileName = $fileName . '_' . time() . '.' . $extension;
+            $path = request('avatar')->storeAs('public/avatar', $newFileName);
+            $users->avatar   = $newFileName;
+        }
+        else
+        {
+            unset($users->avatar);
+        }
+
+        /*$input = $request->except('roles');
+
+        $users->fill($input)->save();
+        if ($request->roles <> '') {
+            $users->roles()->sync($request->roles);
+        }
+        else {
+            $users->roles()->detach();
+        }*/
+
+        $roles = Role::find($request->roles);
+
+        $roles->each(function($role) use($users) {
+            $users->assignRole($role);
+        });
+
+        $users->update();
+
+        return redirect()->route('users.show',$users->id)->withToastInfo('Usuario Actualizado');;
     }
 
     public function destroy($id)

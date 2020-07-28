@@ -21,7 +21,7 @@
                 <div class="post">
                 @foreach($posts as $post)
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="{{ asset('avatar/'.$post->user['avatar']) }}" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="{{ asset('storage/avatar/'.$post->user['avatar']) }}" alt="user image">
                     <span class="username">
                       <a href="{{ route('posts.show',['post' => $post->id]) }}">{{ $post->user['name'] }}</a>
                     </span>
@@ -29,7 +29,7 @@
                   </div>
                   <!-- /.user-block -->
                   <h3>
-                    <a href="{{ route('posts.show',['post' => $post->id]) }}">{{ $post->title }}</a>
+                    Tema: <a href="{{ route('posts.show',['post' => $post->id]) }}">{{ $post->title }}</a>
                     @if($post->wasCreatedBy( Auth::user() ))
                         <span class="pull-right" style="float: right;">
                             <a href="{{ route('posts.edit',$post->id) }}" class="btn btn-info btn-sm" ><i class="fas fa-edit"></i></a>
