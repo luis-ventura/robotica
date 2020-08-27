@@ -26,7 +26,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getFullNameAttribute()
+    /*public function getFullNameAttribute()
     {
         return "{$this->name} {$this->lastName}";
     }
@@ -37,7 +37,7 @@ class User extends Authenticatable
         {
             return $query->where($tipo,'like',"%$buscar%");
         }
-    }
+    }*/
 
     public function uploads()
     {

@@ -59,6 +59,57 @@
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"  required autocomplete="new-password" placeholder="Confirme contraseña">
             </div>
         </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Numero de control:</label>
+            <div class="col-sm-10">
+            <input id="control_number" type="text" class="form-control @error('control_number') is-invalid @enderror" name="control_number" value="{{ old('control_number') }}" required autocomplete="control_number" autofocus placeholder="Numero de Control">
+            </div>
+            @error('control_number')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="form-group row">
+           <label class="col-sm-2 col-form-label">Actividad:</label>
+           <div class="col-sm-10">
+           <select name="activity" class="form-control">
+            <option selected disabled> Seleccione Actividad</option>
+            <option>Residencia</option>
+            <option>Servicio Social</option>
+            <option>Cursando Semestre</option>
+           </select>
+           </div>
+            @error('activity')
+              <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+              </span>
+            @enderror
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Carrera:</label>
+            <div class="col-sm-10">
+            <select name="career" class="form-control">
+                <option selected disabled >Agregar Carrera</option>
+                <option>Ingenieria Bioquimica</option>
+                <option>Ingenieria Quimica</option>
+                <option>Ingenieria Ambiental</option>
+                <option>Ingenieria en Sistemas computacionales</option>
+                <option>Ingenieria en TIC'S</option>
+                <option>Ingenieria Informatica</option>
+                <option>Ingenieria en Gestión Empresarial</option>
+                <option>Ingenieria Civil</option>
+                <option>Ingenieria Industrial</option>
+                <option>Ingenieria Petrolera</option>
+                <option>Licenciatura en Administración</option>
+            </select>
+            </div>
+            @error('career')
+              <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+              </span>
+            @enderror
+        </div>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

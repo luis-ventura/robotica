@@ -9,9 +9,12 @@ class UsersTableSeeder extends Seeder
     {
         // Creación del usuario
         $user = User::create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345678'),
+            'name'           => 'admin',
+            'email'          => 'admin@gmail.com',
+            'password'       => bcrypt('12345678'),
+            'career'         => 'Ninguna',
+            'activity'       => 'Ninguna',
+            'control_number' => '2019202030',
         ])->assignRole('administrador');
 
         // Asignación del rol
@@ -21,6 +24,9 @@ class UsersTableSeeder extends Seeder
             'name'     => 'cordinador',
             'email'    => 'cordinador@gmail.com',
             'password' => bcrypt('12345678'),
+            'career'         => 'Ninguna',
+            'activity'       => 'Ninguna',
+            'control_number' => '2019202040',
         ])->assignRole('cordinador');
 
         //$user->assingRole('coordinator');*/

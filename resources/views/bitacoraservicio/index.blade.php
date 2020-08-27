@@ -29,8 +29,8 @@
                   <th style="width: 10%">Nombre</th>
                   <th style="width: 10%">Apellido</th>
                   <th style="width: 10%">Asesor</th>
-                  <th style="width: 10%">Creado</th>
-                  <th style="width: 10%">Actualizado</th>
+                  <th style="width: 10%">Hora Entrada</th>
+                  <th style="width: 10%">Hora Salida</th>
                   <th style="width: 5%">Editar</th>
                   <th style="width: 5%">Borrar</th>
                 </tr>

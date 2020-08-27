@@ -19,10 +19,12 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $buscar = $request->get('buscarpor');
-        $tipo   = $request->get('tipo');
+        //$buscar = $request->get('buscarpor');
+        //$tipo   = $request->get('tipo');
 
-        $users = User::buscarpor($tipo,$buscar)->paginate(8);
+        //$users = User::buscarpor($tipo,$buscar)->paginate(8);
+
+        $users = User::paginate(8);
 
         return view('users.index',compact('users'));
     }
@@ -36,10 +38,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'     => 'required|max:80',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
-            'roles' => 'required|array',
+            'name'           => 'required|max:80',
+            'email'          => 'required|email|unique:users,email',
+            'password'       => 'required|min:8|confirmed',
+            'control_number' => 'required|min:8|unique:users,control_number',
+            'career'         => 'required',
+            'activity'       => 'required',
+            'roles'          => 'required|array',
         ]);
 
         $request->request->add([
@@ -59,52 +64,21 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $users = User::findOrFail($id);
-        return view('users.show', compact('users'));
+        $users   = User::findOrFail($id);
+        return view('users.show', ['users' => $users]);
     }
 
     public function edit($id)
     {
         $users = User::findOrFail($id);
-        $roles = Role::get();
-        return view('users.edit', compact('users','roles'));
+        $roles = Role::all();
+        return view('users.edit', ['users' => $users, 'roles' => $roles]);
     }
-
-    /*public function update(Request $request, $id)
-    {
-        /*$this->validate($request,[
-            'name'           => 'required|max:80',
-            'lastname'       => 'required|max:80',
-            'email'          => 'required|email|unique:users',
-            'control_number' => 'required|control_number|unique:users',
-            'career'         => 'required|career|unique:users',
-            'activity'       => 'required|activity|unique:users',
-            'avatar'         => 'required|avatar|mimes:jpg,png|max:255'
-        ]);
-
-        $users = User::findOrFail($id);
-
-        if($request->hasFile('avatar'))
-        {
-            $file = $request->file('avatar');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path('avatar/'), $name);
-        }
-
-        $users->name           = $request->input('name');
-        $users->lastname       = $request->input('lastname');
-        $users->email          = $request->input('email');
-        $users->control_number = $request->input('control_number');
-        $users->career         = $request->input('career');
-        $users->activity       = $request->input('activity');
-        $users->avatar         = $name;
-        $users->save();
-
-        return redirect()->route('users.show',$users->id)->withToastInfo('Usuario Actualizado');
-    }*/
 
     public function update(Request $request, $id)
     {
+        $users = User::findOrFail($id);
+
         $this->validate(request(),
             ['name'           => ['required','max:50']],
             ['lastname'       => ['required','max:50']],
@@ -112,19 +86,13 @@ class UserController extends Controller
             ['career'         => ['required']],
             ['control_number' => ['required']],
             ['activity'       => ['required']],
-            ['avatar'         => ['required','image']
+            ['avatar'         => ['required','image']],
+            ['password'       => ['confirmed']
             ]);
 
-        $users = User::findOrFail($id);
-
-        $users->name = $request->get('name');
-        $users->lastname       = $request->get('lastname');
-        $users->email          = $request->get('email');
-        $users->control_number = $request->get('control_number');
-        $users->career         = $request->get('career');
-        $users->activity       = $request->get('activity');
-
-        $file = $request->get('avatar');
+        $users->fill($request->only('name','lastname','email','career','control_number','activity','avatar','password'));
+        $roles = Role::find($request->roles);
+        $file  = $request->get('avatar');
 
         if($file != null or $request->hasFile('avatar'))
         {
@@ -140,25 +108,25 @@ class UserController extends Controller
             unset($users->avatar);
         }
 
-        /*$input = $request->except('roles');
+        $pass = $request->get('password');
 
-        $users->fill($input)->save();
-        if ($request->roles <> '') {
-            $users->roles()->sync($request->roles);
+        if($pass != null )
+        {
+            $users->password= bcrypt($request->get('password'));
         }
-        else {
-            $users->roles()->detach();
-        }*/
+        else
+        {
+            unset($users->password);
+        }
 
-        $roles = Role::find($request->roles);
+        $users->save();
 
-        $roles->each(function($role) use($users) {
-            $users->assignRole($role);
-        });
+        if($users->hasAnyRole($roles))
+        {
+            $users->syncRoles($roles);
+        }
 
-        $users->update();
-
-        return redirect()->route('users.show',$users->id)->withToastInfo('Usuario Actualizado');;
+        return redirect()->route('users.index')->withToastInfo('Usuario Actualizado');
     }
 
     public function destroy($id)

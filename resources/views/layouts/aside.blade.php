@@ -3,7 +3,7 @@
   <!-- Brand Logo -->
   <a href="{{ route('home') }}" class="brand-link">
     <img src="{{ asset('img/robot.jpeg') }}" class="brand-image img-bordered-sm elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">Dashboard</span>
+    <span class="brand-text font-weight-light">Panel de Control</span>
   </a>
 
   <!-- Sidebar -->

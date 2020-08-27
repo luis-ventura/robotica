@@ -111,6 +111,23 @@
             <option>Cursando Semestre</option>
            </select>
         </div>
+        <div class="form-group mb-3">
+            <label>Seleccione su Carrera</label>
+            <select name="career" class="form-control">
+                <option selected disabled >Agregar Carrera</option>
+                <option>Ingenieria Bioquimica</option>
+                <option>Ingenieria Quimica</option>
+                <option>Ingenieria Ambiental</option>
+                <option>Ingenieria en Sistemas computacionales</option>
+                <option>Ingenieria en TIC'S</option>
+                <option>Ingenieria Informatica</option>
+                <option>Ingenieria en Gestión Empresarial</option>
+                <option>Ingenieria Civil</option>
+                <option>Ingenieria Industrial</option>
+                <option>Ingenieria Petrolera</option>
+                <option>Licenciatura en Administración</option>
+            </select>
+         </div>
         <div class="row">
           <div class="col-md-12">
             <button type="submit" class="btn btn-primary btn-block">{{ __('Register') }}</button>

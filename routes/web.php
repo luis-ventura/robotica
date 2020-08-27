@@ -32,7 +32,5 @@ Route::resource('uploadpdf', 'UploadPDFController');
 
 Route::resource('posts', 'PostsController');
 
-//Route::resource('posts', 'PostsCommentsController');
-
 Route::post('posts/{posts}/comments','PostsCommentsController@create')->name('create_comment');
 

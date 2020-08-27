@@ -24,8 +24,8 @@
             <th>Apellido</th>
             <th>Asesor</th>
             <th>Firma</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
+            <th>Hora de Entrada</th>
+            <th>Hora de Salida</th>
           </tr>
         </thead>
         <tbody>

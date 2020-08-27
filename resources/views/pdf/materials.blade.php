@@ -23,8 +23,8 @@
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Material</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
+            <th>Hora de Entrada</th>
+            <th>Hora de Salida</th>
             <th>Observación</th>
           </tr>
         </thead>

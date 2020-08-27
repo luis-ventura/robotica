@@ -12,6 +12,7 @@
        <p class="hometext"><b>Apellidos:</b> {{ Auth::user()->lastname }}</p>
        <p class="hometext"><b>Correo:</b> {{ Auth::user()->email }} </p>
        <p class="hometext"><b>N° Control:</b> {{ Auth::user()->control_number }} </p>
+       <p class="hometext"><b>Carrera:</b> {{ Auth::user()->career }}</p>
        <p class="hometext"><b>Ultima Modificación:</b> {{ Auth::user()->updated_at }}</p>
      </div>
      <br><br>
@@ -33,6 +34,15 @@
             Un robot debe proteger su propia existencia en la medida en que ello no entre en conflicto con la Primera o la Segunda Ley.
          </li>
      </ul>
+
+    <div class="footer">
+        <a href="https://twitter.com/RoboticaITVH?s=09" target="_blank" style="font-size: 20px;">
+            <i class="fab fa-twitter"></i> Twitter Club de Robotica
+        </a><br>
+        <a href="https://www.facebook.com/RoboticaITVH/" target="_blank" style="font-size: 20px;">
+            <i class="fab fa-facebook-square"></i> Facebook Club de Robotica
+        </a>
+    </div>
 
     </div>
 </div>

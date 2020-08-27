@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'activity'       => ['required', 'string', 'max:80'],
             'email'          => ['required', 'string', 'email', 'max:100', 'unique:users'],
             'password'       => ['required', 'string', 'min:8', 'confirmed'],
+            'career'         => ['required', 'string'],
         ]);
     }
 
@@ -74,6 +75,7 @@ class RegisterController extends Controller
             'activity'       => $data['activity'],
             'email'          => $data['email'],
             'password'       => Hash::make($data['password']),
+            'career'         => $data['career'],
         ]);
 
         $user->assignRole('estudiante');

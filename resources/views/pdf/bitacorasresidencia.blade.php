@@ -22,8 +22,8 @@
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Firma</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
+            <th>Hora de Entrada</th>
+            <th>Hora de Salida</th>
             <th>F.Encargado</th>
           </tr>
         </thead>
