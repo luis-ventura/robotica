@@ -35,15 +35,65 @@
          </li>
      </ul>
 
+
+
+
     <div class="footer">
-        <a href="https://twitter.com/RoboticaITVH?s=09" target="_blank" style="font-size: 20px;">
-            <i class="fab fa-twitter"></i> Twitter Club de Robotica
-        </a><br>
-        <a href="https://www.facebook.com/RoboticaITVH/" target="_blank" style="font-size: 20px;">
-            <i class="fab fa-facebook-square"></i> Facebook Club de Robotica
-        </a>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="toggle_switch">
+        @foreach($net as $ne)
+                    <!--<input type="checkbox">-->
+                    @can('boton_mostrar')
+                    <input data-id="{{$ne->id}}" class="toggle-class" type="checkbox"
+                    data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
+                    data-on="Active" data-off="InActive"
+                    {{ $ne->status ? 'checked' : '' }}>
+                    <span></span>
+                    @endcan
+                </label>
+            </div>
+        </div>
+
+
+        @if($ne->status == 1)
+        <div class="row">
+            <div class="col-md-10">
+                @can('mostrar_redes')
+                <a href="https://twitter.com/RoboticaITVH?s=09" target="_blank" style="font-size: 20px;">
+                    <i class="fab fa-twitter"></i> Twitter Club de Robotica
+                </a><br>
+
+                <a href="https://www.facebook.com/RoboticaITVH/" target="_blank" style="font-size: 20px;">
+                    <i class="fab fa-facebook-square"></i> Facebook Club de Robotica
+                </a>
+                @endcan
+            </div>
+        </div>
+        @endif
+        @endforeach
     </div>
 
     </div>
 </div>
+
+<script>
+    $(function() {
+      $('.toggle-class').change(function() {
+          var status = $(this).prop('checked') == true ? 1 : 0;
+          var id = $(this).data('id');
+
+          $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: '/changeStatus',
+              data: {'status': status, 'id': id},
+              success: function(data){
+                console.log(data.success)
+              }
+          });
+      })
+    })
+  </script>
+
 @endsection

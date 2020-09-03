@@ -9,6 +9,7 @@ use App\User;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -19,14 +20,21 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        //$buscar = $request->get('buscarpor');
-        //$tipo   = $request->get('tipo');
-
-        //$users = User::buscarpor($tipo,$buscar)->paginate(8);
-
-        $users = User::paginate(8);
-
-        return view('users.index',compact('users'));
+        if($request->ajax())
+        {
+            $users = User::all();
+            return DataTables::of($users)
+            ->addColumn('rol', function($user){
+                foreach($user->roles as $role)
+                {
+                    return $role->name;
+                }
+            })
+            ->addColumn('action','users.action')
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return view('users.index');
     }
 
     public function create()

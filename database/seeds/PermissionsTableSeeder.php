@@ -34,5 +34,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'visitante_index']);
         Permission::create(['name' => 'generar_pdf']);
         Permission::create(['name' => 'subir_pdf']);
+        Permission::create(['name' => 'mostrar_redes']);
+        Permission::create(['name' => 'boton_mostrar']);
     }
 }

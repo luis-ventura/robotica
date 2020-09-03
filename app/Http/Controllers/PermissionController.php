@@ -81,8 +81,8 @@ class PermissionController extends Controller
     {
         $permission = Permission::findOrFail($id);
 
-        //Make it impossible to delete this specific permission    
-        if ($permission->name == "user_delete") 
+        //Make it impossible to delete this specific permission
+        if ($permission->name == "eliminar_usuario")
         {
             return redirect()->route('permissions.index')->withToastError('No puedes eliminar este permiso');
         }

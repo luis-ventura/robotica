@@ -5,6 +5,7 @@ Auth::routes();
 Route::get('/', function () { return view('welcome'); });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('changeStatus', 'HomeController@changeStatus');
 
 Route::resource('users', 'UserController');
 
@@ -33,4 +34,5 @@ Route::resource('uploadpdf', 'UploadPDFController');
 Route::resource('posts', 'PostsController');
 
 Route::post('posts/{posts}/comments','PostsCommentsController@create')->name('create_comment');
+
 

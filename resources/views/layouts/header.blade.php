@@ -69,7 +69,7 @@
 
           <!-- Menu Footer-->
           <li class="user-footer">
-            <a href="{{ route('users.edit',Auth::user()->id) }}" class="btn btn-default btn-flat">
+            <a href="{{ route('users.show',Auth::user()->id) }}" class="btn btn-default btn-flat">
               <i class="fas fa-user"></i> Perfil
             </a>
             <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right"

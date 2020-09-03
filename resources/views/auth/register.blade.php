@@ -106,6 +106,7 @@
         <div class="form-group mb-3">
            <label>Seleccione Actividad</label>
            <select name="activity" class="form-control">
+            <option selected disabled >Agregar Actividad</option>
             <option>Residencia</option>
             <option>Servicio Social</option>
             <option>Cursando Semestre</option>
