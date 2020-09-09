@@ -18,10 +18,10 @@ class RolesTableSeeder extends Seeder
         'crear_servicio','editar_servicio','mostrar_servicio','eliminar_servicio','servicio_index',
         'crear_materiales','editar_materiales','mostrar_materiales','eliminar_materiales','materiales_index',
         'crear_visitante','editar_visitante','mostrar_visitante','eliminar_visitante','visitante_index',
-        'generar_pdf');
+        'generar_pdf','mostrar_redes');
         //$role->givePermissionTo(Permission::all());
 
         $role = Role::create(['name' => 'estudiante']);
-        $role->givePermissionTo('mostrar_usuario','editar_usuario');
+        $role->givePermissionTo('mostrar_usuario','editar_usuario','mostrar_redes');
     }
 }

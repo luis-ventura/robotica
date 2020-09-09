@@ -6,6 +6,8 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Panel Administrativo</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset('img/robot.jpeg') }}">
+  <!-- CKeditor 4-->
+  <script src="https://cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/66ad15c511.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -29,8 +31,6 @@
     </div>
     </div>
 
-    @yield('js')
-
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
@@ -45,5 +45,7 @@
         bsCustomFileInput.init();
     });
     </script>
+
+    @yield('js_post_page')
 </body>
 </html>

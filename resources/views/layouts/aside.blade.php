@@ -107,7 +107,7 @@
         </li>
         <li class="nav-item has-treeview">
             <a href="{{ route('uploadpdf.index') }}" class="nav-link">
-              <i class="fas fa-file-pdf"></i>
+              <i class="nav-icon fas fa-file-pdf"></i>
               <p>Lista de PDF <i class="right fas fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
@@ -119,6 +119,26 @@
               </li>
             </ul>
           </li>
+        <li class="nav-item has-treeview">
+            <a href="{{ route('noticias.index') }}" class="nav-link">
+                <i class="nav-icon far fa-newspaper"></i>
+                <p>Eventos <i class="right fas fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                  <a href="{{ route('noticias.create') }}" class="nav-link">
+                    <i class="fas fa-newspaper"></i>
+                    <p>Crear Evento</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ route('noticias.index') }}" class="nav-link">
+                    <i class="fas fa-newspaper"></i>
+                    <p>Lista de Eventos</p>
+                  </a>
+              </li>
+            </ul>
+        </li>
         <li class="nav-item has-treeview">
           <a href="{{ route('posts.index') }}" class="nav-link">
             <i class="nav-icon fas fa-question"></i>

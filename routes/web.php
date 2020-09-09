@@ -2,7 +2,8 @@
 
 Auth::routes();
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', 'PrincipalController@index')->name('welcome');
+Route::get('/welcome/{id}', 'PrincipalController@post');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('changeStatus', 'HomeController@changeStatus');
@@ -34,5 +35,7 @@ Route::resource('uploadpdf', 'UploadPDFController');
 Route::resource('posts', 'PostsController');
 
 Route::post('posts/{posts}/comments','PostsCommentsController@create')->name('create_comment');
+
+Route::resource('noticias', 'NoticiasController');
 
 
