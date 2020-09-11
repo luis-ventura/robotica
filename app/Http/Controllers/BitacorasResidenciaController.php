@@ -37,7 +37,15 @@ class BitacorasResidenciaController extends Controller
 
     public function store(Request $request)
     {
-        $bitacorasresidencia = BitacorasR::create($request->all());
+        $this->validate($request,[
+            'date'       => 'required',
+        ]);
+
+        $bitacorasresidencia = new BitacorasR;
+        $bitacorasresidencia->fill($request->only('date'));
+        $bitacorasresidencia->user_id = auth()->user()->id;
+        $bitacorasresidencia->save();
+
         return redirect()->route('bitacorasresidencia.index')->withToastSuccess('Registro Añadido');
     }
 
@@ -51,22 +59,40 @@ class BitacorasResidenciaController extends Controller
     {
         $bitacorasresidencia = BitacorasR::findOrFail($id);
         $users     = User::all();
+
+        if($bitacorasresidencia->user_id != \Auth::user()->id) {
+            return redirect()->route('bitacorasresidencia.index');
+        }
+
         return view('bitacorasresidencia.edit', compact('bitacorasresidencia', 'users'));
     }
 
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'date'       => 'required',
+        ]);
+
         $bitacorasresidencia = BitacorasR::findOrFail($id);
 
-        $bitacorasresidencia->date = $request->input('date');
-        $bitacorasresidencia->save();
+        if($bitacorasresidencia->user_id != \Auth::user()->id) {
+            return redirect()->route('bitacorasresidencia.index');
+        }
+
+        $bitacorasresidencia->update($request->only('date'));
 
         return redirect()->route('bitacorasresidencia.index')->withToastInfo('Resgistro Actualizado');
     }
 
     public function destroy($id)
     {
-        $bitacorasresidencia = BitacorasR::findOrFail($id)->delete();
+        $bitacorasresidencia = BitacorasR::findOrFail($id);
+
+        if($bitacorasresidencia->user_id != \Auth::user()->id) {
+            return redirect()->route('bitacorasresidencia.index');
+        }
+
+        $bitacorasresidencia->delete();
         return redirect()->route('bitacorasresidencia.index')->withToastError('Registro Borrado');
     }
 }

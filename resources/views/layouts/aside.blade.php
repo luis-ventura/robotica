@@ -119,6 +119,7 @@
               </li>
             </ul>
           </li>
+        @role('administrador')
         <li class="nav-item has-treeview">
             <a href="{{ route('noticias.index') }}" class="nav-link">
                 <i class="nav-icon far fa-newspaper"></i>
@@ -139,6 +140,7 @@
               </li>
             </ul>
         </li>
+        @endrole
         <li class="nav-item has-treeview">
           <a href="{{ route('posts.index') }}" class="nav-link">
             <i class="nav-icon fas fa-question"></i>

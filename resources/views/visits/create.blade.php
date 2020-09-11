@@ -7,8 +7,6 @@
     </div>
     <form class="form-horizontal" method="POST" action="{{ route('visits.store')}}">
     @csrf
-    <input hidden name="user_id" value="{{auth()->user()->id}}">
-
       <div class="card-body">
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>

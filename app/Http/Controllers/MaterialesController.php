@@ -40,7 +40,17 @@ class MaterialesController extends Controller
 
     public function store(Request $request)
     {
-        $materials = Material::create($request->all());
+        $this->validate($request,[
+            'date_material' => 'required',
+            'material'      => 'required',
+            'observation'   => 'required'
+        ]);
+
+        $materials = new Material;
+        $materials->fill($request->only('date_material','material', 'observation'));
+        $materials->user_id = auth()->user()->id;
+        $materials->save();
+
         return redirect()->route('materials.index')->withToastSuccess('Registro Añadido');
     }
 
@@ -54,24 +64,42 @@ class MaterialesController extends Controller
     {
         $materials = Material::findOrFail($id);
         $users     = User::all();
+
+        if($materials->user_id != \Auth::user()->id) {
+            return redirect()->route('materials.index');
+        }
+
         return view('materials.edit', compact('materials', 'users'));
     }
 
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'date_material' => 'required',
+            'material'      => 'required',
+            'observation'   => 'required'
+        ]);
+
         $materials = Material::findOrFail($id);
 
-        $materials->date_material = $request->input('date_material');
-        $materials->material      = $request->input('material');
-        $materials->observation   = $request->input('observation');
-        $materials->save();
+        if($materials->user_id != \Auth::user()->id) {
+            return redirect()->route('materials.index');
+        }
+
+        $materials->update($request->only('date_material','material','observation'));
 
         return redirect()->route('materials.index')->withToastInfo('Resgistro Actualizado');
     }
 
     public function destroy($id)
     {
-        $materials = Material::findOrFail($id)->delete();
+        $materials = Material::findOrFail($id);
+
+        if($materials->user_id != \Auth::user()->id) {
+            return redirect()->route('materials.index');
+        }
+
+        $materials->delete();
         return redirect()->route('materials.index')->withToastError('Material Borrado');
     }
 }

@@ -14,4 +14,13 @@ class Visit extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function wasCreatedBy($user)
+    {
+        if(is_null($user))
+        {
+            return false;
+        }
+        return $this->user_id === $user->id;
+    }
 }

@@ -33,7 +33,16 @@ class VisitController extends Controller
 
     public function store(Request $request)
     {
-        $visits = Visit::create($request->all());
+        $this->validate($request,[
+            'date'       => 'required',
+            'assessor'   => 'required',
+        ]);
+
+        $visits = new Visit;
+        $visits->fill($request->only('date','assessor'));
+        $visits->user_id = auth()->user()->id;
+        $visits->save();
+
         return redirect()->route('visits.index')->withToastSuccess('Registro Añadido');
     }
 
@@ -47,22 +56,42 @@ class VisitController extends Controller
     {
         $visits = Visit::findOrFail($id);
         $users  = User::all();
+
+
+        if($visits->user_id != \Auth::user()->id) {
+            return redirect()->route('visits.index');
+        }
+
         return view('visits.edit', compact('visits', 'users'));
     }
 
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'date'     => 'required',
+            'assessor' => 'required',
+        ]);
+
         $visits = Visit::findOrFail($id);
 
-        $visits->date = $request->input('date');
-        $visits->save();
+        if($visits->user_id != \Auth::user()->id) {
+            return redirect()->route('visits.index');
+        }
+
+        $visits->update($request->only('date','assessor'));
 
         return redirect()->route('visits.index')->withToastInfo('Resgistro Actualizado');
     }
 
     public function destroy($id)
     {
-        $visits = Visit::findOrFail($id)->delete();
+        $visits = Visit::findOrFail($id);
+
+        if($visits->user_id != \Auth::user()->id) {
+            return redirect()->route('posts.index');
+        }
+
+        $visits->delete();
         return redirect()->route('visits.index')->withToastError('Registro Borrado');
     }
 }

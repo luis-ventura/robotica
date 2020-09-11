@@ -7,7 +7,6 @@
     </div>
     <form class="form-horizontal" method="POST" action="{{ route('bitacorasresidencia.store')}}">
     @csrf
-    <input hidden name="user_id" value="{{auth()->user()->id}}">
 
       <div class="card-body">
         <div class="form-group row">

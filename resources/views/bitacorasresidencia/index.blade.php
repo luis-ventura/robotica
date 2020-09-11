@@ -44,6 +44,8 @@
                       <td>{{ $residencia->user->lastname }}</td>
                       <td>{{ $residencia->created_at }}</td>
                       <td>{{ $residencia->updated_at }}</td>
+
+                    @if($residencia->wasCreatedBy( Auth::user() ))
                       <td>
                         <a href="{{ route('bitacorasresidencia.edit',$residencia->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                       </td>
@@ -56,6 +58,10 @@
                          </button>
                         </form>
                       </td>
+                    @else
+                      <td><i class="fas fa-edit"></i></td>
+                      <td><i class="fas fa-trash-alt"></i></td>
+                    @endif
                   </tr>
                   @endforeach
               </tbody>

@@ -33,9 +33,7 @@
                   <th style="width: 10%">Hora de Salida</th>
                   <th style="width: 8%">Observación</th>
                   <th style="width: 5%">Editar</th>
-                  @can('eliminar_materiales')
                   <th style="width: 5%">Borrar</th>
-                  @endcan
                 </tr>
               </thead>
               <tbody>
@@ -50,10 +48,10 @@
                  <td>{{ $material->created_at }}</td>
                  <td>{{ $material->updated_at }}</td>
                  <td>{{ $material->observation }}</td>
+                 @if($material->wasCreatedBy( Auth::user() ))
                  <td>
                     <a href="{{ route('materials.edit',$material->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                  </td>
-                 @can('eliminar_materiales')
                  <td>
                    <form method="POST" action="{{ route('materials.destroy', $material->id)}}">
                     @csrf
@@ -63,9 +61,12 @@
                     </button>
                    </form>
                  </td>
-                 @endcan
-                 @endforeach
+                 @else
+                 <td><i class="fas fa-edit"></i></td>
+                 <td><i class="fas fa-trash-alt"></i></td>
+                 @endif
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

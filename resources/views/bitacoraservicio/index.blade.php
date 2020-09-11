@@ -46,6 +46,7 @@
                       <td>{{ $servicio->adviser }}</td>
                       <td>{{ $servicio->created_at }}</td>
                       <td>{{ $servicio->updated_at }}</td>
+                  @if($servicio->wasCreatedBy( Auth::user() ))
                       <td>
                         <a href="{{ route('bitacoraservicio.edit',$servicio->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                       </td>
@@ -58,6 +59,10 @@
                          </button>
                         </form>
                       </td>
+                  @else
+                      <td><i class="fas fa-edit"></i></td>
+                      <td><i class="fas fa-trash-alt"></i></td>
+                  @endif
                   </tr>
                   @endforeach
               </tbody>

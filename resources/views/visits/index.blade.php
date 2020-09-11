@@ -32,9 +32,7 @@
                   <th style="width: 10%">Hora Entrada</th>
                   <th style="width: 12%">Hora de Salida</th>
                   <th style="width: 5%">Editar</th>
-                  @can('eliminar_visitante')
-                    <th style="width: 5%">Borrar</th>
-                  @endcan
+                  <th style="width: 5%">Borrar</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,10 +46,10 @@
                       <td>{{ $visit->assessor }}</td>
                       <td>{{ $visit->created_at }}</td>
                       <td>{{ $visit->updated_at }}</td>
+                  @if($visit->wasCreatedBy( Auth::user() ))
                       <td>
                         <a href="{{ route('visits.edit',$visit->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                       </td>
-                      @can('eliminar_visitante')
                       <td>
                         <form method="POST" action="{{ route('visits.destroy', $visit->id)}}">
                         @csrf
@@ -61,7 +59,10 @@
                          </button>
                         </form>
                       </td>
-                      @endcan
+                  @else
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fas fa-trash-alt"></i></td>
+                  @endif
                   </tr>
                   @endforeach
               </tbody>
