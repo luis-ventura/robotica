@@ -24,9 +24,13 @@ class BitacoraServicioController extends Controller
         return $pdf->setPaper('a4','landscape')->stream('bitacoraservicio-list-pdf');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $bitacoraservicio = BitacorasSe::all();
+        $created_at = $request->get('created_at');
+        $updated_at = $request->get('updated_at');
+       
+        $bitacoraservicio = BitacorasSe::created_at($created_at)->updated_at($updated_at)->paginate(10); 
+
         return view('bitacoraservicio.index', compact('bitacoraservicio'));
     }
 
@@ -74,6 +78,7 @@ class BitacoraServicioController extends Controller
         $this->validate($request,[
             'date'       => 'required',
             'adviser'    => 'required',
+            'updated_at' => 'required',
         ]);
 
         $bitacoraservicio = BitacorasSe::findOrFail($id);
@@ -82,7 +87,7 @@ class BitacoraServicioController extends Controller
             return redirect()->route('bitacoraservicio.index');
         }
 
-        $bitacoraservicio->update($request->only('date','adviser'));
+        $bitacoraservicio->update($request->only('date','adviser','updated_at'));
 
         return redirect()->route('bitacoraservicio.index')->withToastInfo('Resgistro Actualizado');
     }

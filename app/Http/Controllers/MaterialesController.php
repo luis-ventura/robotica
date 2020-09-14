@@ -26,9 +26,13 @@ class MaterialesController extends Controller
         return $pdf->setPaper('a4','landscape')->stream('lista-materiales.pdf');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $materials = Material::all();
+        $created_at = $request->get('created_at');
+        $updated_at = $request->get('updated_at');
+
+        $materials = Material::created_at($created_at)->updated_at($updated_at)->paginate(10);
+        
         return view('materials.index', compact('materials'));
     }
 
@@ -77,6 +81,7 @@ class MaterialesController extends Controller
         $this->validate($request,[
             'date_material' => 'required',
             'material'      => 'required',
+            'updated_at'    => 'required',
             'observation'   => 'required'
         ]);
 
@@ -86,7 +91,7 @@ class MaterialesController extends Controller
             return redirect()->route('materials.index');
         }
 
-        $materials->update($request->only('date_material','material','observation'));
+        $materials->update($request->only('date_material','material','updated_at','observation'));
 
         return redirect()->route('materials.index')->withToastInfo('Resgistro Actualizado');
     }

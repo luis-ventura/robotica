@@ -1,12 +1,25 @@
 @extends('layouts.app')
 
+@section('header')
+<div class="col-md-12">
+    <h2 class="card-title">Bitacora de Servicio Social</h2>
+</div><br>
+@endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Bitacora de Servicio Social</h3>
+            <nav class="navbar navbar-light float-left">
+                <form class="form-inline">
+                    <!--<input name="date" class="form-control mr-sm-2" type="date" placeholder="Buscar">-->
+                    <input name="created_at" class="form-control mr-sm-2" type="text" placeholder="Y-M-D H-M-S">
+                    <input name="updated_at" class="form-control mr-sm-2" type="text" placeholder="Y-M-D H-M-S">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </nav>
             <div class="card-tools">
              <div class="btn-group">
                 @can('generar_pdf')
@@ -68,6 +81,7 @@
               </tbody>
             </table>
           </div>
+          {{ $bitacoraservicio->links() }}
         </div>
       </div>
     </div>

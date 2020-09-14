@@ -43,7 +43,26 @@
                     { data: 'activity',       name: 'activity' },
                     { data: 'updated_at',     name: 'updated_at'},
                     { data: 'action',         name: 'action', orderable: false, searchable: false },
-                ]
+                ],
+                "language":{
+                    "info": "_TOTAL_ Registros",
+                    "search": "Buscar",
+                    "paginate": {
+                        "next": "Siquiente",
+                        "previous": "Anterior"
+                    },
+                    "lengthMenu": 'Mostrar <select>'+
+                                  '<option value="10">10</option>'+
+                                  '<option value="30">30</option>'+
+                                  '<option value="-1">Todos</option>'+
+                                  '</select> Registros',
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "emptyTable": "No hay datos",
+                    "zeroRecords": "No hay coincidencias",
+                    "infoEmpty": "",
+                    "infoFiltered": ""
+                }
             })
         })
     </script>

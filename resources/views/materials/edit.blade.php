@@ -32,6 +32,17 @@
             @enderror
         </div>
         <div class="form-group row">
+            <label for="fecha" class="col-sm-2 col-form-label">Hora Salida:</label>
+            <div class="col-sm-10">
+              <input type="datetime" class="form-control @error('updated_at') is-invalid @enderror" name="updated_at"  value="{{ $materials->updated_at }}">
+            </div>
+            @error('updated_at')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Observación:</label>
             <div class="col-sm-10">
               <input type="text" class="form-control @error('observation') is-invalid @enderror" id="observation" name="observation" placeholder="Observación" value="{{ $materials->observation }}">

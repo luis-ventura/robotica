@@ -23,10 +23,15 @@ class BitacorasResidenciaController extends Controller
         return $pdf->setPaper('a4','landscape')->stream('bitacorasresidencia-list-pdf');
     }
 
-    public function index()
-    {
-        $bitacorasresidencia = BitacorasR::all();
-        return view('bitacorasresidencia.index', compact('bitacorasresidencia'));
+    public function index(Request $request)
+    {   
+        $created_at = $request->get('created_at');
+        $updated_at = $request->get('updated_at');
+        //$date       = $request->get('date');
+        //$bitacorasresidencia = BitacorasR::created_at($created_at)->updated_at($updated_at)->date($date)->paginate(10); 
+
+        $bitacorasresidencia = BitacorasR::created_at($created_at)->updated_at($updated_at)->paginate(10); 
+        return view('bitacorasresidencia.index',['bitacorasresidencia'=> $bitacorasresidencia]);
     }
 
     public function create()
@@ -71,6 +76,7 @@ class BitacorasResidenciaController extends Controller
     {
         $this->validate($request,[
             'date'       => 'required',
+            'updated_at' => 'required',
         ]);
 
         $bitacorasresidencia = BitacorasR::findOrFail($id);
@@ -79,7 +85,7 @@ class BitacorasResidenciaController extends Controller
             return redirect()->route('bitacorasresidencia.index');
         }
 
-        $bitacorasresidencia->update($request->only('date'));
+        $bitacorasresidencia->update($request->only('date', 'updated_at'));
 
         return redirect()->route('bitacorasresidencia.index')->withToastInfo('Resgistro Actualizado');
     }

@@ -19,9 +19,13 @@ class VisitController extends Controller
         return $pdf->setPaper('a4','landscape')->stream('visita-list-pdf');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $visits = Visit::all();
+        $created_at = $request->get('created_at');
+        $updated_at = $request->get('updated_at');
+
+        $visits = Visit::created_at($created_at)->updated_at($updated_at)->paginate(10);
+        
         return view('visits.index', compact('visits'));
     }
 
@@ -68,8 +72,9 @@ class VisitController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'date'     => 'required',
-            'assessor' => 'required',
+            'date'       => 'required',
+            'assessor'   => 'required',
+            'updated_at' => 'required',
         ]);
 
         $visits = Visit::findOrFail($id);
@@ -78,7 +83,7 @@ class VisitController extends Controller
             return redirect()->route('visits.index');
         }
 
-        $visits->update($request->only('date','assessor'));
+        $visits->update($request->only('date','assessor','updated_at'));
 
         return redirect()->route('visits.index')->withToastInfo('Resgistro Actualizado');
     }

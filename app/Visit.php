@@ -8,7 +8,7 @@ class Visit extends Model
 {
     protected $table = 'visits';
 
-    protected $fillable = ['date','assessor','user_id'];
+    protected $fillable = ['date','assessor','user_id','updated_at'];
 
     public function user()
     {
@@ -22,5 +22,21 @@ class Visit extends Model
             return false;
         }
         return $this->user_id === $user->id;
+    }
+
+    public function scopeCreated_at($query, $created_at)
+    {
+        if($created_at)
+        {
+            return $query->Orwhere('created_at','like', "%$created_at%");
+        }
+    }
+
+    public function scopeUpdated_at($query, $updated_at)
+    {
+        if($updated_at)
+        {
+            return $query->Orwhere('updated_at','like', "%$updated_at%");
+        }
     }
 }
