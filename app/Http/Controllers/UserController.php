@@ -47,9 +47,10 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name'           => 'required|max:80',
+            'lastname'       => 'required|max:80',
             'email'          => 'required|email|unique:users,email',
             'password'       => 'required|min:8|confirmed',
-            'control_number' => 'required|min:8|unique:users,control_number',
+            'control_number' => 'required|max:8|unique:users,control_number',
             'career'         => 'required',
             'activity'       => 'required',
             'roles'          => 'required|array',
@@ -92,7 +93,7 @@ class UserController extends Controller
             ['lastname'       => ['required','max:50']],
             ['email'          => ['required', 'email', 'max:255', 'unique:users,email,'.$id]],
             ['career'         => ['required']],
-            ['control_number' => ['required']],
+            ['control_number' => ['required','control_number','max:8','unique:users,control_number'.$id]],
             ['activity'       => ['required']],
             ['avatar'         => ['required','image']],
             ['password'       => ['confirmed']

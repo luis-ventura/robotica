@@ -48,7 +48,7 @@
                     "info": "_TOTAL_ Registros",
                     "search": "Buscar",
                     "paginate": {
-                        "next": "Siquiente",
+                        "next": "Siguiente",
                         "previous": "Anterior"
                     },
                     "lengthMenu": 'Mostrar <select>'+

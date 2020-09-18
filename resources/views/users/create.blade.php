@@ -10,7 +10,7 @@
     @csrf
       <div class="card-body">
         <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
+            <label for="name" class="col-sm-2 col-form-label">Nombres:</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="name" placeholder="Ingrese sus nombres" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nombres">
             </div>
@@ -20,6 +20,17 @@
                 </span>
             @enderror
         </div>
+        <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Apellidos:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="lastname" placeholder="Ingrese sus apellidos" value="{{ old('lastname') }}" required autocomplete="name" autofocus placeholder="Nombres">
+          </div>
+          @error('lastname')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+      </div>
         <div class="form-group row">
           <label for="email" class="col-sm-2 col-form-label">Correo Electronico:</label>
           <div class="col-sm-10">
@@ -78,6 +89,9 @@
             <option>Residencia</option>
             <option>Servicio Social</option>
             <option>Cursando Semestre</option>
+            @role('administrador')
+            <option>Asesor</option>
+            @endrole
            </select>
            </div>
             @error('activity')
@@ -102,6 +116,9 @@
                 <option>Ingenieria Industrial</option>
                 <option>Ingenieria Petrolera</option>
                 <option>Licenciatura en Administración</option>
+                @role('administrador')
+                <option>Docente</option>
+                @endrole
             </select>
             </div>
             @error('career')
