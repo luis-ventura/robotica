@@ -28,8 +28,8 @@ class BitacoraServicioController extends Controller
     {
         $created_at = $request->get('created_at');
         $updated_at = $request->get('updated_at');
-       
-        $bitacoraservicio = BitacorasSe::created_at($created_at)->updated_at($updated_at)->paginate(10); 
+
+        $bitacoraservicio = BitacorasSe::created_at($created_at)->updated_at($updated_at)->paginate(10);
 
         return view('bitacoraservicio.index', compact('bitacoraservicio'));
     }
@@ -83,10 +83,6 @@ class BitacoraServicioController extends Controller
 
         $bitacoraservicio = BitacorasSe::findOrFail($id);
 
-        if($bitacoraservicio->user_id != \Auth::user()->id) {
-            return redirect()->route('bitacoraservicio.index');
-        }
-
         $bitacoraservicio->update($request->only('date','adviser','updated_at'));
 
         return redirect()->route('bitacoraservicio.index')->withToastInfo('Resgistro Actualizado');
@@ -95,11 +91,6 @@ class BitacoraServicioController extends Controller
     public function destroy($id)
     {
         $bitacoraservicio = BitacorasSe::findOrFail($id);
-
-        if($bitacoraservicio->user_id != \Auth::user()->id) {
-            return redirect()->route('bitacoraservicio.index');
-        }
-
         $bitacoraservicio->delete();
         return redirect()->route('bitacoraservicio.index')->withToastError('Registro Borrado');
     }

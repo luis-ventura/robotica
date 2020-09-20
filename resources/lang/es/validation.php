@@ -177,5 +177,8 @@ return [
         'year'                  => 'año',
         'career'                => 'carrera',
         'activity'              => 'actividad',
+        'upload'                => 'El campo',
+        'adviser'               => 'asesor',
+        'assessor'              => 'asesor',
     ],
 ];

@@ -35,7 +35,7 @@ class UploadPDFController extends Controller
             'upload' => $request->file('upload')->store('/pdfs', 'public'),
         ]);
 
-        return redirect()->route('uploadpdf.index');
+        return redirect()->route('uploadpdf.index')->withToastSuccess('Archivo PDF Subido');
     }
 
     public function show(Upload $uploadpdf)
@@ -67,6 +67,6 @@ class UploadPDFController extends Controller
 
         $upload->delete();
 
-        return redirect()->route('uploadpdf.index')->with('Eliminado');
+        return redirect()->route('uploadpdf.index')->withToastError('Archivo PDF eliminado');
     }
 }

@@ -17,4 +17,13 @@ class Upload extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function wasCreatedBy($user)
+    {
+        if(is_null($user))
+        {
+            return false;
+        }
+        return $this->user_id === $user->id;
+    }
 }

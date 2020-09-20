@@ -32,7 +32,7 @@ class MaterialesController extends Controller
         $updated_at = $request->get('updated_at');
 
         $materials = Material::created_at($created_at)->updated_at($updated_at)->paginate(10);
-        
+
         return view('materials.index', compact('materials'));
     }
 
@@ -68,11 +68,6 @@ class MaterialesController extends Controller
     {
         $materials = Material::findOrFail($id);
         $users     = User::all();
-
-        if($materials->user_id != \Auth::user()->id) {
-            return redirect()->route('materials.index');
-        }
-
         return view('materials.edit', compact('materials', 'users'));
     }
 
@@ -87,10 +82,6 @@ class MaterialesController extends Controller
 
         $materials = Material::findOrFail($id);
 
-        if($materials->user_id != \Auth::user()->id) {
-            return redirect()->route('materials.index');
-        }
-
         $materials->update($request->only('date_material','material','updated_at','observation'));
 
         return redirect()->route('materials.index')->withToastInfo('Resgistro Actualizado');
@@ -99,11 +90,6 @@ class MaterialesController extends Controller
     public function destroy($id)
     {
         $materials = Material::findOrFail($id);
-
-        if($materials->user_id != \Auth::user()->id) {
-            return redirect()->route('materials.index');
-        }
-
         $materials->delete();
         return redirect()->route('materials.index')->withToastError('Material Borrado');
     }

@@ -26,7 +26,7 @@
             <input type="text" class="form-control" name="users[]" placeholder="Matricula"
             @foreach ($users as $user)
                 {{ $user->id }}
-                value="{{ $user->control_number }}"
+                value="{{ Auth::user()->control_number }}"
             @endforeach >
             </div>
         </div>
@@ -36,7 +36,7 @@
             <input type="text" class="form-control" name="users[]" placeholder="Nombre"
             @foreach ($users as $user)
                 {{ $user->id }}
-                value="{{ $user->name }}"
+                value="{{ Auth::user()->name }}"
             @endforeach >
             </div>
         </div>
@@ -46,7 +46,7 @@
             <input type="text" class="form-control" name="users[]" placeholder="Apellido"
             @foreach ($users as $user)
                 {{ $user->id }}
-                value="{{ $user->lastname }}"
+                value="{{ Auth::user()->lastname }}"
             @endforeach >
             </div>
         </div>
@@ -54,7 +54,7 @@
       <!-- /.card-body -->
       <div class="card-footer">
         <button type="submit" class="btn btn-success">Guardar</button>
-        <a class="btn btn-warning" href="{{ route('materials.index') }}">Cancelar</a>
+        <a class="btn btn-warning" href="{{ route('bitacorasresidencia.index') }}">Cancelar</a>
       </div>
       <!-- /.card-footer -->
     </form>

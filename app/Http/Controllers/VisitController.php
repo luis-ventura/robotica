@@ -25,7 +25,7 @@ class VisitController extends Controller
         $updated_at = $request->get('updated_at');
 
         $visits = Visit::created_at($created_at)->updated_at($updated_at)->paginate(10);
-        
+
         return view('visits.index', compact('visits'));
     }
 
@@ -60,12 +60,6 @@ class VisitController extends Controller
     {
         $visits = Visit::findOrFail($id);
         $users  = User::all();
-
-
-        if($visits->user_id != \Auth::user()->id) {
-            return redirect()->route('visits.index');
-        }
-
         return view('visits.edit', compact('visits', 'users'));
     }
 
@@ -78,11 +72,6 @@ class VisitController extends Controller
         ]);
 
         $visits = Visit::findOrFail($id);
-
-        if($visits->user_id != \Auth::user()->id) {
-            return redirect()->route('visits.index');
-        }
-
         $visits->update($request->only('date','assessor','updated_at'));
 
         return redirect()->route('visits.index')->withToastInfo('Resgistro Actualizado');
@@ -91,11 +80,6 @@ class VisitController extends Controller
     public function destroy($id)
     {
         $visits = Visit::findOrFail($id);
-
-        if($visits->user_id != \Auth::user()->id) {
-            return redirect()->route('posts.index');
-        }
-
         $visits->delete();
         return redirect()->route('visits.index')->withToastError('Registro Borrado');
     }
