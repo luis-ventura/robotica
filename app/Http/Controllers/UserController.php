@@ -130,7 +130,7 @@ class UserController extends Controller
 
         $users->save();
 
-        if($users->hasAnyRole($roles))
+        if($users->hasRole(Role::all()))
         {
             $users->syncRoles($roles);
         }

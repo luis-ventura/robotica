@@ -26,6 +26,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function asignarRol($role)
+    {
+        $this->roles()->sync($role, false);
+    }
+
+
     public function uploads()
     {
         return $this->hasMany(Upload::class);

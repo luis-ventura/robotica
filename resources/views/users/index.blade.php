@@ -14,9 +14,7 @@
                 <th>Carrera</th>
                 <th>Actividad</th>
                 <th>Usuario Actualizado</th>
-                @role('administrador')
                 <th>Opciones</th>
-                @endrole
             </tr>
         </thead>
         <tbody>
