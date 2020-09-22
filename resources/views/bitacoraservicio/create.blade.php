@@ -28,13 +28,13 @@
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="users[]" placeholder="Matricula" value="{{ Auth::user()->name }}">
+                <input type="text" class="form-control" name="users[]" placeholder="Nombres" value="{{ Auth::user()->name }}">
             </div>
         </div>
         <div class="form-group row">
             <label for="fecha" class="col-sm-2 col-form-label">Apellido:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="users[]" placeholder="Matricula" value="{{ Auth::user()->lastname }}">
+                <input type="text" class="form-control" name="users[]" placeholder="Apellidos" value="{{ Auth::user()->lastname }}">
             </div>
         </div>
         <div class="form-group row">
